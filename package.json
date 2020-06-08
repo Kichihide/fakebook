@@ -1,0 +1,37 @@
+{
+  "name": "fakebook",
+  "description": "Facebook-like resume",
+  "version": "1.0.0",
+  "private": true,
+  "keywords": [
+    "gatsby, typescript"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "build": "gatsby build",
+    "dev": "gatsby develop",
+    "format": "prettier --parser typescript --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.ts*\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.10.1",
+    "@types/node": "^14.0.11",
+    "@types/react-helmet": "^6.0.0",
+    "gatsby": "^2.23.1",
+    "gatsby-link": "^2.4.5",
+    "gatsby-plugin-graphql-codegen": "^2.7.1",
+    "gatsby-plugin-react-helmet": "^3.3.3",
+    "gatsby-plugin-sass": "^2.3.3",
+    "gatsby-plugin-typescript": "^2.4.4",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  }
+}
