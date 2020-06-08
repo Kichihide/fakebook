@@ -9,4 +9,6 @@ yarn-error.log
 gatsby-node/*.js
 src/**/*.js
 src/**/**/*.js
+src/**/*.css
+src/**/**/*.css
 types/

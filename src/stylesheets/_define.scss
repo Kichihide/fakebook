@@ -1,4 +1,13 @@
 
 :root {
-  --color-main-back: #f0f2f5;
+  --color-site-back: #f0f2f5;
+  --color-site-text: #1c1e21;
+
+  --color-content-back: #ffffff;
+
+  --color-header-back: var(--color-content-back);
+  --color-profile-tiles-back: var(--color-content-back);
+  --color-post-preview-back: var(--color-content-back);
+
+  --margin-bottom-timeline-content: .4rem;
 }

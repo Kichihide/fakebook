@@ -1,3 +1,5 @@
+const { createFilePath } = require(`gatsby-source-filesystem`);
+
 'use strict';
 require('ts-node').register({
   compilerOptions: {
@@ -5,4 +7,16 @@ require('ts-node').register({
     target: 'esnext',
   },
 });
-exports.createPages = require('./gatsby-node/index').createPages;
+exports.createPages = require('./gatsby-node/PostPreviewList').createPages;
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions;
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({ node, getNode, basePath: `pages` });
+      node,
+      name: `slug`,
+      value: slug,
+    });
+  }
+};
