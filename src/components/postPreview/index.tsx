@@ -6,20 +6,16 @@ const styles = require("./index.module.scss");
 
 type Props = {
   userName?: String,
-  fields?: {
-    node: {
-      fields: MarkdownRemarkFields
-    };
-  }
+  fields: MarkdownRemarkFields
 }
 
 
-const Component: React.FC<Props> = ({ userName, fields }) => (
+const PostPreview: React.FC<Props> = ({ userName, fields }) => (
   <article className={styles.postPreview}>
     {userName}
-    {fields ? fields.node.fields.slug : null}
+    {fields.slug}
   </article>
 );
 
 
-export default Component;
+export default PostPreview;

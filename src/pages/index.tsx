@@ -1,64 +1,98 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { PostPreviewListQuery } from "../../types/graphql-types";
+import { GatsbyImageSharpFluidFragment, TimelinePageQuery } from "../../types/graphql-types";
 import Layouts from "../layouts/index";
 import PostPreview from "../components/postPreview";
-import ProfileTiles from "../components/profileTiles";
+import ProfileTiles from "../components/profileTile";
+
 
 // const styles = require("./index.module.scss");
 
 type Props = {
-  data: PostPreviewListQuery
+  data: TimelinePageQuery
+}
+
+const Component: React.FC<Props> = ({ data }) => {
+  const { fLogoImage, profileBackImage, siteMetadataJson, thumbnailImage, timelineData } = data;
+
+  return (
+    <Layouts
+      title={siteMetadataJson?.siteMetadata?.title}
+      fLogoImageFluid={getImageFluid(fLogoImage)}
+    >
+      <ProfileTiles
+        thumbnailImageFluid={getImageFluid(thumbnailImage)}
+        profileBackImageFluid={getImageFluid(profileBackImage)}
+      />
+      <section>
+        {(() => {
+          return timelineData.edges.map((edge: any) => {
+            const { id, fields } = edge.node;
+            return (
+              <PostPreview
+                key={id}
+                userName={"佐々木 小次郎"}
+                fields={fields}
+              />
+            );
+          });
+        })()}
+      </section>
+    </Layouts>
+  );
+};
+
+function getImageFluid(imageData: any): GatsbyImageSharpFluidFragment {
+  return imageData?.childImageSharp?.fluid;
 }
 
 
-const Component: React.FC<Props> = ({ data }) => (
-  <Layouts>
-    <ProfileTiles/>
-    <section>
-      {data.allMarkdownRemark.edges.map((fields: any) => (
-        <PostPreview key={fields.node.id}
-                     userName={data.allJsonJson.edges[0].node.userName ? data.allJsonJson.edges[0].node.userName : "test"}
-                     fields={fields}/>
-      ))}
-    </section>
-  </Layouts>
-);
-
-
 export const pageQuery = graphql`
-  query PostPreviewList {
-    site {
-      siteMetadata {
-        title
+query timelinePage {
+  siteMetadataJson: jsonJson {
+    siteMetadata {
+      title
+    }
+  }
+  thumbnailImage: file(relativePath: {eq: "images/thumbnail.jpg"}) {
+    childImageSharp {
+      fluid {
+        ...GatsbyImageSharpFluid
       }
     }
-    allMarkdownRemark {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          html
-          frontmatter {
-            tags
-            title
-            description
-            date
-          }
+  }
+  profileBackImage: file(relativePath: {eq: "images/profile_back.jpg"}) {
+    childImageSharp {
+      fluid {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+  fLogoImage: file(relativePath: {eq: "images/f_logo.png"}) {
+    childImageSharp {
+      fluid {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+  timelineData: allMarkdownRemark {
+    edges {
+      node {
+        id
+        html
+        fields {
+          slug
         }
-      }
-      totalCount
-    }
-    allJsonJson {
-      edges {
-        node {
-          userName
+        frontmatter {
+          tags
+          title
+          description
+          date
         }
       }
     }
   }
+}
 `;
 
 

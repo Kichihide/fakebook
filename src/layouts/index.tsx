@@ -1,19 +1,32 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import Header from "../components/header/index";
+import { GatsbyImageSharpFluidFragment } from "../../types/graphql-types";
 
 const styles = require("./index.module.scss");
 
 
-const Component: React.FC = props => (
-  <div id="page" className={styles.layouts}>
-    <Helmet title="Gatsby Default Starter"/>
-    <Header/>
-    <div>
-      {props.children}
+type Props = {
+  title?: string | null,
+  fLogoImageFluid?: GatsbyImageSharpFluidFragment | null,
+  children: any
+}
+
+const Layouts: React.FC<Props> = ({ title, fLogoImageFluid, children }) => {
+  return (
+    <div id="page" className={styles.layouts}>
+      {(() => {
+        if (title) {
+          return <Helmet title={title}/>;
+        }
+      })()}
+      <Header fLogoImageFluid={fLogoImageFluid}/>
+      <div>
+        {children}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 
-export default Component;
+export default Layouts;
