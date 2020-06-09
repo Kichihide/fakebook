@@ -1,41 +1,62 @@
-import * as React from "react";
-import Img, { FluidObject } from "gatsby-image";
-import { GatsbyImageSharpFluidFragment } from "../../../types/graphql-types";
+import * as React from 'react';
+import Img, { FluidObject } from 'gatsby-image';
+import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 
-// const styles = require("./index.module.scss");
+function createFluidObject(
+    fluid: GatsbyImageSharpFluidFragment
+): FluidObject | null {
+    const { aspectRatio, src, srcSet, sizes, base64 } = fluid;
 
-type Props = {
-  fluid: GatsbyImageSharpFluidFragment,
-  alt: string,
-  imgStyle: {
-    height: string,
-    width: string
-  }
+    if (!base64) {
+        return null;
+    }
+
+    return {
+        aspectRatio: aspectRatio,
+        src: src,
+        srcSet: srcSet,
+        sizes: sizes,
+        base64: base64,
+    };
 }
 
-
-const Image: React.FC<Props> = ({ fluid, alt, imgStyle }) => {
-  const { aspectRatio, src, srcSet, sizes, base64 } = fluid;
-
-  if (!base64) {
-    return null;
-  }
-
-  const fluidObject: FluidObject = {
-    aspectRatio: aspectRatio,
-    src: src,
-    srcSet: srcSet,
-    sizes: sizes,
-    base64: base64
-  };
-
-  return (
-    <Img
-      alt={alt}
-      fluid={fluidObject}
-      imgStyle={imgStyle}
-    />
-  );
+/**
+ * Image wrapper
+ */
+type ImageProps = {
+    fluid: GatsbyImageSharpFluidFragment;
+    alt: string;
+    imgStyle: {
+        height: string;
+        width: string;
+    };
 };
 
-export default Image;
+const Image: React.FC<ImageProps> = ({ fluid, alt, imgStyle }) => {
+    const fluidObject = createFluidObject(fluid);
+    if (!fluidObject) {
+        return null;
+    }
+
+    return <Img alt={alt} fluid={fluidObject} imgStyle={imgStyle} />;
+};
+
+/**
+ * Thumbnail icon
+ */
+type ThumbnailIconProps = {
+    fluid: GatsbyImageSharpFluidFragment;
+    diameter: string;
+};
+
+const ThumbnailIcon: React.FC<ThumbnailIconProps> = ({ fluid, diameter }) => {
+    const fluidObject = createFluidObject(fluid);
+    if (!fluidObject) {
+        return null;
+    }
+
+    const imgStyle = { height: diameter, width: diameter };
+    return <Img alt="thumbnail" fluid={fluidObject} imgStyle={imgStyle} />;
+};
+
+export { Image, ThumbnailIcon };

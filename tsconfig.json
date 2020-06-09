@@ -1,20 +1,26 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "esnext",
-    "strict": true,
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "esModuleInterop": true,
-    "jsx": "react",
-    "lib": [
-      "dom",
-      "esnext"
+    "compilerOptions": {
+        "baseUrl": "./",
+        "module": "commonjs",
+        "target": "esnext",
+        "strict": true,
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "esModuleInterop": true,
+        "jsx": "react",
+        "lib": ["dom", "esnext"],
+        "paths": {
+            "@components*": ["./src/components/*"],
+            "@layouts*": ["./src/layouts/*"],
+            "types*": ["./@types/*"]
+        }
+    },
+    "include": ["./src/**/*", "./src/**/**/*"],
+    "exclude": [
+        "**/node_modules",
+        "./public",
+        "./.cache",
+        "./@types",
+        "./gatsby-node"
     ]
-  },
-  "include": [
-    "./types/**/*",
-    "./src/**/*",
-    "./src/**/**/*"
-  ]
 }

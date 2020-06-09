@@ -1,44 +1,49 @@
 {
-  "name": "fakebook",
-  "description": "Facebook-like resume",
-  "version": "1.0.0",
-  "private": true,
-  "keywords": [
-    "gatsby, typescript"
-  ],
-  "license": "MIT",
-  "main": "n/a",
-  "scripts": {
-    "build": "gatsby build",
-    "dev": "gatsby develop",
-    "format": "prettier --parser typescript --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.ts*\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.10.1",
-    "@types/node": "^14.0.11",
-    "@types/react-helmet": "^6.0.0",
-    "bignumber.js": "^9.0.0",
-    "gatsby": "^2.23.1",
-    "gatsby-image": "^2.4.6",
-    "gatsby-link": "^2.4.5",
-    "gatsby-plugin-graphql-codegen": "^2.7.1",
-    "gatsby-plugin-react-helmet": "^3.3.3",
-    "gatsby-plugin-sass": "^2.3.3",
-    "gatsby-plugin-sharp": "^2.6.10",
-    "gatsby-plugin-typescript": "^2.4.4",
-    "gatsby-source-filesystem": "^2.3.10",
-    "gatsby-transformer-json": "^2.4.4",
-    "gatsby-transformer-remark": "^2.8.14",
-    "gatsby-transformer-sharp": "^2.5.4",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-helmet": "^6.0.0",
-    "ts-node": "^8.10.2",
-    "typescript": "^3.9.5"
-  },
-  "devDependencies": {
-    "prettier": "^2.0.5"
-  }
+    "name": "fakebook",
+    "description": "Facebook-like resume",
+    "version": "1.0.0",
+    "private": true,
+    "keywords": [
+        "gatsby, typescript"
+    ],
+    "license": "MIT",
+    "main": "n/a",
+    "scripts": {
+        "build": "gatsby build",
+        "dev": "gatsby develop",
+        "format": "prettier --write *.{js,json} && prettier --write src/*.ts && prettier --write src/**/*.{ts,tsx} && prettier --write src/**/**/*.{ts,tsx,json}",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "refresh": "rm -f -r ./.cache ./@types/graphql-types.d.ts ./src/*.{js,map,css} ./src/**/*.{js,map,css} ./src/**/**/*.{js,map,css} && yarn format"
+    },
+    "dependencies": {
+        "@babel/plugin-proposal-optional-chaining": "^7.10.1",
+        "@types/node": "^14.0.11",
+        "@types/react-helmet": "^6.0.0",
+        "bignumber.js": "^9.0.0",
+        "gatsby": "^2.23.1",
+        "gatsby-image": "^2.4.6",
+        "gatsby-link": "^2.4.5",
+        "gatsby-plugin-graphql-codegen": "^2.7.1",
+        "gatsby-plugin-react-helmet": "^3.3.3",
+        "gatsby-plugin-sass": "^2.3.3",
+        "gatsby-plugin-sharp": "^2.6.10",
+        "gatsby-plugin-typescript": "^2.4.4",
+        "gatsby-source-filesystem": "^2.3.10",
+        "gatsby-transformer-json": "^2.4.4",
+        "gatsby-transformer-remark": "^2.8.14",
+        "gatsby-transformer-sharp": "^2.5.4",
+        "lodash": "^4.17.15",
+        "node-sass": "^4.14.1",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-helmet": "^6.0.0",
+        "ts-node": "^8.10.2",
+        "typescript": "^3.9.5"
+    },
+    "devDependencies": {
+        "@types/bignumber.js": "^5.0.0",
+        "@types/lodash": "^4.14.155",
+        "prettier": "^2.0.5",
+        "webpack": "^4.43.0"
+    }
 }
