@@ -8,8 +8,6 @@ import Layouts from '@layouts/timeline';
 import ProfileTiles from '@components/profileTile';
 import PostPreview from '@components/postPreview';
 
-// const styles = require("./index.module.scss");
-
 type Props = {
     data: TimelinePageQuery;
 };
@@ -28,24 +26,34 @@ const TimelinePage: React.FC<Props> = ({ data }) => {
         return null;
     }
 
+    const fLogoImageFluid = getImageFluid(fLogoImage);
+    const profileBackImageFluid = getImageFluid(profileBackImage);
+    const thumbnailImageFluid = getImageFluid(thumbnailImage);
+
+    const postList = timelineData.edges.sort((a, b) => {
+        return a < b ? 1 : -1;
+    });
+
     return (
         <Layouts
             title={siteMetadataJson?.siteMetadata?.title}
-            fLogoImageFluid={getImageFluid(fLogoImage)}
+            fLogoImageFluid={fLogoImageFluid}
         >
             <ProfileTiles
-                profileBackImageFluid={getImageFluid(profileBackImage)}
-                thumbnailImageFluid={getImageFluid(thumbnailImage)}
+                profileBackImageFluid={profileBackImageFluid}
+                thumbnailImageFluid={thumbnailImageFluid}
             />
             <section>
                 {(() => {
-                    return timelineData.edges.map((edge: any) => {
-                        const { id, fields } = edge.node;
+                    return postList.map((edge: any) => {
+                        const { frontmatter, html } = edge.node;
                         return (
                             <PostPreview
-                                key={id}
-                                userName={'佐々木 小次郎'}
-                                fields={fields}
+                                key={frontmatter.id}
+                                userName={'鵜木 義秀'} // Todo: 定義場所の検討
+                                fields={frontmatter}
+                                html={html}
+                                thumbnailImageFluid={thumbnailImageFluid}
                             />
                         );
                     });
@@ -98,17 +106,12 @@ export const pageQuery = graphql`
         timelineData: allMarkdownRemark {
             edges {
                 node {
-                    id
-                    html
-                    fields {
-                        slug
-                    }
                     frontmatter {
-                        tags
-                        title
-                        description
+                        id
                         date
+                        tags
                     }
+                    html
                 }
             }
         }

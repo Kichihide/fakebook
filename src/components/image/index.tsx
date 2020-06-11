@@ -2,6 +2,8 @@ import * as React from 'react';
 import Img, { FluidObject } from 'gatsby-image';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 
+const styles = require('./index.module.scss');
+
 function createFluidObject(
     fluid: GatsbyImageSharpFluidFragment
 ): FluidObject | null {
@@ -30,15 +32,28 @@ type ImageProps = {
         height: string;
         width: string;
     };
+    wrapperStyle?: {};
 };
 
-const Image: React.FC<ImageProps> = ({ fluid, alt, imgStyle }) => {
+const Image: React.FC<ImageProps> = ({
+    fluid,
+    alt,
+    imgStyle,
+    wrapperStyle,
+}) => {
     const fluidObject = createFluidObject(fluid);
     if (!fluidObject) {
         return null;
     }
 
-    return <Img alt={alt} fluid={fluidObject} imgStyle={imgStyle} />;
+    return (
+        <Img
+            alt={alt}
+            style={wrapperStyle}
+            fluid={fluidObject}
+            imgStyle={imgStyle}
+        />
+    );
 };
 
 /**
@@ -55,8 +70,17 @@ const ThumbnailIcon: React.FC<ThumbnailIconProps> = ({ fluid, diameter }) => {
         return null;
     }
 
-    const imgStyle = { height: diameter, width: diameter };
-    return <Img alt="thumbnail" fluid={fluidObject} imgStyle={imgStyle} />;
+    const wrapperStyle = { height: diameter, width: diameter };
+    const imgStyle = wrapperStyle;
+    return (
+        <Img
+            alt="thumbnail"
+            className={styles.thumbnailIcon}
+            style={wrapperStyle}
+            fluid={fluidObject}
+            imgStyle={imgStyle}
+        />
+    );
 };
 
 export { Image, ThumbnailIcon };

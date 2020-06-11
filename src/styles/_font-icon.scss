@@ -1,0 +1,42 @@
+%base-m-icon {
+  direction: ltr;
+  display: inline-block;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+  font-size: 1rem;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+}
+
+.m-icon {
+  @extend %base-m-icon;
+
+  font-family: 'Material Icons';
+}
+
+@mixin m-icon($content) {
+  content: $content;
+  font-family: 'Material Icons';
+}
+

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image } from '@components/image';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 
-const styles = require('./index.module.scss');
+import { HeaderWrapper, IconWrapper, MaterialIcon } from './style';
 
 type Props = {
     fLogoImageFluid: GatsbyImageSharpFluidFragment;
@@ -10,13 +10,25 @@ type Props = {
 
 const Header: React.FC<Props> = ({ fLogoImageFluid }) => {
     // Todo: レスポンシブ対応
-    const diameter = '36px';
-    const imgStyle = { height: diameter, width: diameter };
+    const height = '1.1';
+    const width = new BigNumber(height).times(fLogoImageFluid.aspectRatio);
+    const imgStyle = {
+        height: height.toString() + 'rem',
+        width: width.toString() + 'rem',
+    };
 
     return (
-        <header className={styles.header}>
-            <Image fluid={fLogoImageFluid} alt="f-logo" imgStyle={imgStyle} />
-        </header>
+        <HeaderWrapper>
+            <Image
+                fluid={fLogoImageFluid}
+                alt="f-logo"
+                imgStyle={imgStyle}
+                wrapperStyle={imgStyle}
+            />
+            <IconWrapper onClick={() => alert('To be released.')}>
+                <MaterialIcon>search</MaterialIcon>
+            </IconWrapper>
+        </HeaderWrapper>
     );
 };
 

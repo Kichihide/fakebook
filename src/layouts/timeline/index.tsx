@@ -3,8 +3,6 @@ import { Helmet } from 'react-helmet';
 import Header from '@components/header';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 
-const styles = require('./index.module.scss');
-
 type Props = {
     title?: string | null;
     fLogoImageFluid: GatsbyImageSharpFluidFragment;
@@ -13,7 +11,7 @@ type Props = {
 
 const Layouts: React.FC<Props> = ({ title, fLogoImageFluid, children }) => {
     return (
-        <div id="page" className={styles.layouts}>
+        <div id="page">
             {(() => {
                 if (title) {
                     return <Helmet title={title} />;

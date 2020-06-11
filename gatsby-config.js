@@ -3,6 +3,7 @@ module.exports = {
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
         `gatsby-plugin-sharp`,
+        `gatsby-plugin-styled-components`,
         `gatsby-plugin-typescript`,
         `gatsby-transformer-json`,
         `gatsby-transformer-remark`,
@@ -16,6 +17,12 @@ module.exports = {
                     './src/**/*.{ts,tsx}',
                     './node_modules/gatsby-*/**/*.js',
                 ],
+            },
+        },
+        {
+            resolve: 'gatsby-plugin-google-fonts',
+            options: {
+                fonts: ['material icons'],
             },
         },
         {
