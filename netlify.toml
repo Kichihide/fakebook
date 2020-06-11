@@ -1,2 +1,3 @@
 [build]
-  publish = "public/"
+  publish = "public"
+  command = "gatsby build"
