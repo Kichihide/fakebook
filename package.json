@@ -3,6 +3,7 @@
     "description": "Facebook-like resume",
     "version": "1.0.0",
     "private": true,
+    "homepage": "./",
     "keywords": [
         "gatsby, typescript"
     ],
