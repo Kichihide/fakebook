@@ -13,7 +13,9 @@ import {
     Button,
     ThumbnailIconWrapper,
 } from './style';
-import { IconWrapper } from '@componentsheader/style';
+
+// Todo: Netlifyデプロイのため暫定対応
+const BigNumber = require('bignumber.js').default;
 
 type Props = {
     profileBackImageFluid: GatsbyImageSharpFluidFragment;
@@ -25,7 +27,7 @@ const ProfileTile: React.FC<Props> = ({
     thumbnailImageFluid,
 }) => {
     // Todo: レスポンシブ対応
-    const widthForProfBack = window.parent.screen.width.toString();
+    const widthForProfBack = '375'; // Todo: Netlifyデプロイのため暫定対応
     const heightForProfBack = new BigNumber(widthForProfBack).div(
         profileBackImageFluid.aspectRatio
     );

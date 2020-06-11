@@ -4,6 +4,9 @@ import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 
 import { HeaderWrapper, IconWrapper, MaterialIcon } from './style';
 
+// Todo: Netlifyデプロイのため暫定対応
+const BigNumber = require('bignumber.js').default;
+
 type Props = {
     fLogoImageFluid: GatsbyImageSharpFluidFragment;
 };
