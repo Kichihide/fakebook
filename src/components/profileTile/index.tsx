@@ -5,17 +5,15 @@ import Row from './Row';
 
 import {
     ProfileTileWrapper,
+    BackgroundImage,
     NameContainer,
     Name,
     UserDataContainer,
     Text,
     ButtonContainer,
     Button,
-    ThumbnailIconWrapper,
+    ThumbnailContainer,
 } from './style';
-
-// Todo: Netlifyデプロイのため暫定対応
-const BigNumber = require('bignumber.js').default;
 
 type Props = {
     profileBackImageFluid: GatsbyImageSharpFluidFragment;
@@ -26,35 +24,16 @@ const ProfileTile: React.FC<Props> = ({
     profileBackImageFluid,
     thumbnailImageFluid,
 }) => {
-    // Todo: レスポンシブ対応
-    const widthForProfBack = '375'; // Todo: Netlifyデプロイのため暫定対応
-    const heightForProfBack = new BigNumber(widthForProfBack).div(
-        profileBackImageFluid.aspectRatio
-    );
-
-    const heightForProfBackWrapper = heightForProfBack.times(0.66);
-    const imgStyleForProfBack = {
-        height: heightForProfBack.toString() + 'px',
-        width: widthForProfBack.toString() + 'px',
-    };
-    const wrapperStyleForProfBack = {
-        height: heightForProfBackWrapper.toString() + 'px',
-        maxHeight: heightForProfBack.toString() + 'px',
-    };
-
-    // Todo: レスポンシブ対応
-    const diameterFroThumbnailImage = '9rem';
-
     return (
         <ProfileTileWrapper>
-            <div>
+            <BackgroundImage>
                 <Image
-                    fluid={profileBackImageFluid}
                     alt="profile-back"
-                    imgStyle={imgStyleForProfBack}
-                    wrapperStyle={wrapperStyleForProfBack}
+                    fluid={profileBackImageFluid}
+                    imgHeight="10rem"
+                    imgWidth="100vw"
                 />
-            </div>
+            </BackgroundImage>
             <NameContainer>
                 <Name>鵜木 義秀</Name>
             </NameContainer>
@@ -105,12 +84,9 @@ const ProfileTile: React.FC<Props> = ({
                     基本データを見る
                 </Button>
             </ButtonContainer>
-            <ThumbnailIconWrapper>
-                <ThumbnailIcon
-                    fluid={thumbnailImageFluid}
-                    diameter={diameterFroThumbnailImage}
-                />
-            </ThumbnailIconWrapper>
+            <ThumbnailContainer>
+                <ThumbnailIcon fluid={thumbnailImageFluid} diameter="9rem" />
+            </ThumbnailContainer>
         </ProfileTileWrapper>
     );
 };

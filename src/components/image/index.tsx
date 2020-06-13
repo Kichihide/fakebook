@@ -2,7 +2,7 @@ import * as React from 'react';
 import Img, { FluidObject } from 'gatsby-image';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 
-const styles = require('./index.module.scss');
+import { ImageWrapper, ThumbnailIconWrapper } from './style';
 
 function createFluidObject(
     fluid: GatsbyImageSharpFluidFragment
@@ -26,33 +26,22 @@ function createFluidObject(
  * Image wrapper
  */
 type ImageProps = {
-    fluid: GatsbyImageSharpFluidFragment;
     alt: string;
-    imgStyle: {
-        height: string;
-        width: string;
-    };
-    wrapperStyle?: {};
+    fluid: GatsbyImageSharpFluidFragment;
+    imgHeight?: string;
+    imgWidth?: string;
 };
 
-const Image: React.FC<ImageProps> = ({
-    fluid,
-    alt,
-    imgStyle,
-    wrapperStyle,
-}) => {
+const Image: React.FC<ImageProps> = ({ fluid, alt, imgHeight, imgWidth }) => {
     const fluidObject = createFluidObject(fluid);
     if (!fluidObject) {
         return null;
     }
 
     return (
-        <Img
-            alt={alt}
-            style={wrapperStyle}
-            fluid={fluidObject}
-            imgStyle={imgStyle}
-        />
+        <ImageWrapper imgHeight={imgHeight} imgWidth={imgWidth}>
+            <Img alt={alt} fluid={fluidObject} />
+        </ImageWrapper>
     );
 };
 
@@ -62,6 +51,7 @@ const Image: React.FC<ImageProps> = ({
 type ThumbnailIconProps = {
     fluid: GatsbyImageSharpFluidFragment;
     diameter: string;
+    wrapperStyle?: {};
 };
 
 const ThumbnailIcon: React.FC<ThumbnailIconProps> = ({ fluid, diameter }) => {
@@ -70,16 +60,10 @@ const ThumbnailIcon: React.FC<ThumbnailIconProps> = ({ fluid, diameter }) => {
         return null;
     }
 
-    const wrapperStyle = { height: diameter, width: diameter };
-    const imgStyle = wrapperStyle;
     return (
-        <Img
-            alt="thumbnail"
-            className={styles.thumbnailIcon}
-            style={wrapperStyle}
-            fluid={fluidObject}
-            imgStyle={imgStyle}
-        />
+        <ThumbnailIconWrapper diameter={diameter}>
+            <Img alt="thumbnail" fluid={fluidObject} />
+        </ThumbnailIconWrapper>
     );
 };
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import device from '@styles/media';
 import {
     GatsbyImageSharpFluidFragment,
     MarkdownRemarkFrontmatter,
@@ -8,7 +9,7 @@ import { ThumbnailIcon } from '@components/image';
 import {
     PostPreviewWrapper,
     Header,
-    ThumbnailIconWrapper,
+    ThumbnailContainer,
     MetaInfo,
     Name,
     DateWrapper,
@@ -16,6 +17,14 @@ import {
     MaterialIcon,
     Contents,
 } from './style';
+
+function getHeaderHeight(): string {
+    if (device.pc) {
+        return '2.2rem';
+    } else {
+        return '1.8rem';
+    }
+}
 
 type Props = {
     userName?: String;
@@ -30,18 +39,16 @@ const PostPreview: React.FC<Props> = ({
     html,
     thumbnailImageFluid,
 }) => {
-    // Todo: レスポンシブ対応
-    const heightForHeader = '1.8rem';
     return (
         <PostPreviewWrapper>
             <Header>
-                <ThumbnailIconWrapper>
+                <ThumbnailContainer>
                     <ThumbnailIcon
                         fluid={thumbnailImageFluid}
-                        diameter={heightForHeader}
+                        diameter={getHeaderHeight()}
                     />
-                </ThumbnailIconWrapper>
-                <MetaInfo height={heightForHeader}>
+                </ThumbnailContainer>
+                <MetaInfo heightSize={getHeaderHeight()}>
                     <Name>{userName}</Name>
                     <DateWrapper>
                         <Date>{fields.date}</Date>

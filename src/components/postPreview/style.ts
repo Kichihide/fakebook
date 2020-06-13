@@ -16,14 +16,15 @@ const Header = styled.header`
     padding: 0.2rem 0.3rem 0;
 `;
 
-const ThumbnailIconWrapper = styled.div`
+const ThumbnailContainer = styled.div`
     margin-right: 0.2rem;
 `;
 
-const MetaInfo = styled.div<{ height: string }>`
+const MetaInfo = styled.div<{ heightSize: string }>`
     align-items: flex-start;
     display: flex;
     flex-flow: column;
+    height: ${({ heightSize }) => heightSize};
     justify-content: center;
 `;
 
@@ -72,7 +73,7 @@ const Contents = styled.div`
 export {
     PostPreviewWrapper,
     Header,
-    ThumbnailIconWrapper,
+    ThumbnailContainer,
     MetaInfo,
     Name,
     DateWrapper,

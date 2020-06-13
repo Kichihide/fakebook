@@ -10,6 +10,10 @@ const ProfileTileWrapper = styled.div`
     margin-bottom: ${MARGIN.BOTTOM_TIMELINE_CONTENT};
 `;
 
+const BackgroundImage = styled.div`
+    overflow: hidden;
+`;
+
 const NameContainer = styled.div`
     align-items: flex-end;
     display: flex;
@@ -48,9 +52,8 @@ const TextWrapper = styled.div`
 `;
 
 const Text = styled.span<{ isBlock: boolean; isStrong: boolean }>`
-    font-weight: ${({ isStrong }) =>
-        isStrong ? FONT_WEIGHT.BOLD : FONT_WEIGHT.NORMAL};
-    display: ${({ isBlock }) => (isBlock ? 'block' : 'inline')};
+    ${({ isStrong }) => isStrong && `font-weight: ${FONT_WEIGHT.BOLD}`};
+    ${({ isBlock }) => isBlock && `display: block`};
 
     &:not(:last-child) {
         margin-right: 0.2rem;
@@ -81,7 +84,7 @@ const MaterialIcon = styled(BaseMaterialIcon)<{ iconType: string }>`
     `}
 `;
 
-const ThumbnailIconWrapper = styled.div`
+const ThumbnailContainer = styled.div`
     position: absolute;
     top: 6.67rem;
     right: 0;
@@ -112,6 +115,7 @@ const Button = styled.div`
 
 export {
     ProfileTileWrapper,
+    BackgroundImage,
     NameContainer,
     Name,
     UserDataContainer,
@@ -122,5 +126,5 @@ export {
     MaterialIcon,
     ButtonContainer,
     Button,
-    ThumbnailIconWrapper,
+    ThumbnailContainer,
 };

@@ -13,7 +13,6 @@ module.exports = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-            // BigNumber: 'bignumber.js',　// Todo: Netlifyデプロイのため暫定対応
             _: 'lodash',
         }),
     ],
