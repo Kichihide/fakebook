@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Image, ThumbnailIcon } from '@components/image';
+import { Image } from '@components/image';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 import Row from './Row';
 
 import {
     ProfileTileWrapper,
     BackgroundImage,
+    ImageWrapper,
     NameContainer,
     Name,
     UserDataContainer,
@@ -13,6 +14,7 @@ import {
     ButtonContainer,
     Button,
     ThumbnailContainer,
+    ThumbnailIconWrapper,
 } from './style';
 
 type Props = {
@@ -27,12 +29,9 @@ const ProfileTile: React.FC<Props> = ({
     return (
         <ProfileTileWrapper>
             <BackgroundImage>
-                <Image
-                    alt="profile-back"
-                    fluid={profileBackImageFluid}
-                    imgHeight="10rem"
-                    imgWidth="100vw"
-                />
+                <ImageWrapper>
+                    <Image alt="profile-back" fluid={profileBackImageFluid} />
+                </ImageWrapper>
             </BackgroundImage>
             <NameContainer>
                 <Name>鵜木 義秀</Name>
@@ -85,7 +84,9 @@ const ProfileTile: React.FC<Props> = ({
                 </Button>
             </ButtonContainer>
             <ThumbnailContainer>
-                <ThumbnailIcon fluid={thumbnailImageFluid} diameter="9rem" />
+                <ThumbnailIconWrapper>
+                    <Image alt="thumbnail" fluid={thumbnailImageFluid} />
+                </ThumbnailIconWrapper>
             </ThumbnailContainer>
         </ProfileTileWrapper>
     );

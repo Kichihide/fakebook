@@ -4,12 +4,12 @@ import {
     GatsbyImageSharpFluidFragment,
     MarkdownRemarkFrontmatter,
 } from 'types/graphql-types';
-import { ThumbnailIcon } from '@components/image';
 
 import {
     PostPreviewWrapper,
     Header,
     ThumbnailContainer,
+    ThumbnailIconWrapper,
     MetaInfo,
     Name,
     DateWrapper,
@@ -17,14 +17,7 @@ import {
     MaterialIcon,
     Contents,
 } from './style';
-
-function getHeaderHeight(): string {
-    if (device.pc) {
-        return '2.2rem';
-    } else {
-        return '1.8rem';
-    }
-}
+import { Image } from '@components/image';
 
 type Props = {
     userName?: String;
@@ -43,12 +36,11 @@ const PostPreview: React.FC<Props> = ({
         <PostPreviewWrapper>
             <Header>
                 <ThumbnailContainer>
-                    <ThumbnailIcon
-                        fluid={thumbnailImageFluid}
-                        diameter={getHeaderHeight()}
-                    />
+                    <ThumbnailIconWrapper>
+                        <Image alt="thumbnail" fluid={thumbnailImageFluid} />
+                    </ThumbnailIconWrapper>
                 </ThumbnailContainer>
-                <MetaInfo heightSize={getHeaderHeight()}>
+                <MetaInfo>
                     <Name>{userName}</Name>
                     <DateWrapper>
                         <Date>{fields.date}</Date>

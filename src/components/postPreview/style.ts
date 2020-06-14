@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { COLOR, FONT, FONT_WEIGHT, MARGIN } from '@styles/define';
 import { MaterialIcon as BaseMaterialIcon } from '@styles/font-icon';
+import {
+    setThumbnailIconSize,
+    BaseThumbnailIconWrapper,
+} from '@components/image/style';
 
 const PostPreviewWrapper = styled.article`
     background-color: ${COLOR.POST_PREVIEW_BACK};
@@ -20,11 +24,15 @@ const ThumbnailContainer = styled.div`
     margin-right: 0.2rem;
 `;
 
-const MetaInfo = styled.div<{ heightSize: string }>`
+const ThumbnailIconWrapper = styled(BaseThumbnailIconWrapper)`
+    ${() => setThumbnailIconSize('1.8rem')}
+`;
+
+const MetaInfo = styled.div`
     align-items: flex-start;
     display: flex;
     flex-flow: column;
-    height: ${({ heightSize }) => heightSize};
+    height: 1.8rem;
     justify-content: center;
 `;
 
@@ -74,6 +82,7 @@ export {
     PostPreviewWrapper,
     Header,
     ThumbnailContainer,
+    ThumbnailIconWrapper,
     MetaInfo,
     Name,
     DateWrapper,

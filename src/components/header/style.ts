@@ -5,8 +5,8 @@ import {
     IconWrapper as BaseIconWrapper,
     MaterialIcon as BaseMaterialIcon,
 } from '@styles/font-icon';
+import { setImgSize } from '@components/image/style';
 
-// Todo: レスポンシブ本格実装
 const HeaderWrapper = styled.header`
     align-items: center;
     background-color: ${COLOR.HEADER_BACK};
@@ -19,8 +19,17 @@ const HeaderWrapper = styled.header`
     z-index: 100;
 
     ${device.pc`
-        background-color: red;
+        height: 3rem;
   `}
+`;
+
+const ImageWrapper = styled.div`
+    ${device.pc`
+        ${() => setImgSize('auto', '6rem')}
+    `}
+    ${device.sp`
+        ${() => setImgSize('auto', '5.5rem')}
+    `}
 `;
 
 const IconWrapper = styled(BaseIconWrapper)`
@@ -35,4 +44,4 @@ const MaterialIcon = styled(BaseMaterialIcon)`
     font-size: ${FONT.XXXLARGE};
 `;
 
-export { HeaderWrapper, IconWrapper, MaterialIcon };
+export { HeaderWrapper, ImageWrapper, IconWrapper, MaterialIcon };

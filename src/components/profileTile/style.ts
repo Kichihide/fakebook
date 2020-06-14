@@ -4,6 +4,11 @@ import {
     MaterialIcon as BaseMaterialIcon,
     IconWrapper as BaseIconWrapper,
 } from '@styles/font-icon';
+import {
+    BaseThumbnailIconWrapper,
+    setImgSize,
+    setThumbnailIconSize,
+} from '@components/image/style';
 
 const ProfileTileWrapper = styled.div`
     background-color: ${COLOR.PROFILE_TAIL_BACK};
@@ -12,6 +17,10 @@ const ProfileTileWrapper = styled.div`
 
 const BackgroundImage = styled.div`
     overflow: hidden;
+`;
+
+const ImageWrapper = styled.div`
+    ${() => setImgSize('10rem', '100vw')}
 `;
 
 const NameContainer = styled.div`
@@ -91,6 +100,10 @@ const ThumbnailContainer = styled.div`
     left: 0;
 `;
 
+const ThumbnailIconWrapper = styled(BaseThumbnailIconWrapper)`
+    ${() => setThumbnailIconSize('9rem')}
+`;
+
 const ButtonContainer = styled.div`
     align-items: center;
     display: flex;
@@ -116,6 +129,7 @@ const Button = styled.div`
 export {
     ProfileTileWrapper,
     BackgroundImage,
+    ImageWrapper,
     NameContainer,
     Name,
     UserDataContainer,
@@ -127,4 +141,5 @@ export {
     ButtonContainer,
     Button,
     ThumbnailContainer,
+    ThumbnailIconWrapper,
 };
