@@ -1,0 +1,10 @@
+{
+    "siteConfig": {
+        "siteTitle": "fakebook",
+        "profile": {
+            "japanName": "鵜木 義秀",
+            "romanNotation": "Yoshihide Unoki",
+            "shortMessage": "デザイナー、エンジニア、コンサルタントが仲良く仕事できるように頑張ってます。React / Vue / Cordova / TypeScript / UIUX / デザイン / Team Building / 副業 あたりのことをつぶやきます。"
+        }
+    }
+}

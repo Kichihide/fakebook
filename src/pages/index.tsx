@@ -1,67 +1,16 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
+import Header from '@components/header';
+import Hero from '@components/hero';
+import Navigation from '@components/navigation';
+import PersonalInfo from '@components/personalInfo';
+import Timeline from '@components/timeline';
 import {
     GatsbyImageSharpFluidFragment,
     TimelinePageQuery,
 } from 'types/graphql-types';
-import Layouts from '@layouts/timeline';
-import ProfileTiles from '@components/profileTile';
-import PostPreview from '@components/postPreview';
-
-type Props = {
-    data: TimelinePageQuery;
-};
-
-const TimelinePage: React.FC<Props> = ({ data }) => {
-    const {
-        fLogoImage,
-        profileBackImage,
-        siteMetadataJson,
-        thumbnailImage,
-        timelineData,
-    } = data;
-
-    if (checkHasAllData(data)) {
-        // Todo: データ不足時の画面表示（ありえない想定）
-        return null;
-    }
-
-    const fLogoImageFluid = getImageFluid(fLogoImage);
-    const profileBackImageFluid = getImageFluid(profileBackImage);
-    const thumbnailImageFluid = getImageFluid(thumbnailImage);
-
-    const postList = timelineData.edges.sort((a, b) => {
-        return a < b ? 1 : -1;
-    });
-
-    return (
-        <Layouts
-            title={siteMetadataJson?.siteMetadata?.title}
-            fLogoImageFluid={fLogoImageFluid}
-        >
-            <ProfileTiles
-                profileBackImageFluid={profileBackImageFluid}
-                thumbnailImageFluid={thumbnailImageFluid}
-            />
-            <section>
-                {(() => {
-                    return postList.map((edge: any) => {
-                        const { frontmatter, html } = edge.node;
-                        return (
-                            <PostPreview
-                                key={frontmatter.id}
-                                userName={'鵜木 義秀'} // Todo: 定義場所の検討
-                                fields={frontmatter}
-                                html={html}
-                                thumbnailImageFluid={thumbnailImageFluid}
-                            />
-                        );
-                    });
-                })()}
-            </section>
-        </Layouts>
-    );
-};
+import { GlobalStyle, MyPageContainer, ContentsArea } from './style';
 
 function checkHasAllData(dataObj: {}): boolean {
     return !_.every(dataObj, (data: any) => {
@@ -73,11 +22,82 @@ function getImageFluid(imageData: any): GatsbyImageSharpFluidFragment {
     return imageData?.childImageSharp?.fluid;
 }
 
+type Props = {
+    data: TimelinePageQuery;
+};
+
+const MyPage: React.FC<Props> = ({ data }) => {
+    const {
+        fakeBookLogoImage,
+        messengerIconImage,
+        twitterIconImage,
+        gitHubIconImage,
+        backgroundImage,
+        siteConfigJson,
+        thumbnailImage,
+        timelineData,
+    } = data;
+
+    if (checkHasAllData(data)) {
+        // Todo: データ不足時の画面表示（ありえない想定）
+        return null;
+    }
+
+    const fakeBookLogoImageFluid = getImageFluid(fakeBookLogoImage);
+    const messengerIconImageFluid = getImageFluid(messengerIconImage);
+    const twitterIconFluid = getImageFluid(twitterIconImage);
+    const gitHubIconFluid = getImageFluid(gitHubIconImage);
+    const backgroundImageFluid = getImageFluid(backgroundImage);
+    const thumbnailImageFluid = getImageFluid(thumbnailImage);
+
+    return (
+        <React.Fragment>
+            <GlobalStyle />
+            <MyPageContainer id="page">
+                {(() => {
+                    if (siteConfigJson?.siteConfig?.siteTitle) {
+                        return (
+                            <Helmet
+                                title={siteConfigJson?.siteConfig?.siteTitle}
+                            />
+                        );
+                    }
+                })()}
+                <Header fakeBookLogoImageFluid={fakeBookLogoImageFluid} />
+                <Hero
+                    profileData={siteConfigJson?.siteConfig?.profile}
+                    backgroundImageFluid={backgroundImageFluid}
+                    thumbnailImageFluid={thumbnailImageFluid}
+                />
+                <Navigation
+                    messengerIconImageFluid={messengerIconImageFluid}
+                    twitterIconFluid={twitterIconFluid}
+                    gitHubIconFluid={gitHubIconFluid}
+                />
+                <ContentsArea>
+                    <PersonalInfo />
+                    <Timeline
+                        postList={timelineData.edges}
+                        thumbnailImageFluid={thumbnailImageFluid}
+                    />
+                </ContentsArea>
+            </MyPageContainer>
+        </React.Fragment>
+    );
+};
+
+export default MyPage;
+
 export const pageQuery = graphql`
     query timelinePage {
-        siteMetadataJson: jsonJson {
-            siteMetadata {
-                title
+        siteConfigJson: jsonJson {
+            siteConfig {
+                siteTitle
+                profile {
+                    japanName
+                    romanNotation
+                    shortMessage
+                }
             }
         }
         thumbnailImage: file(relativePath: { eq: "images/thumbnail.jpg" }) {
@@ -87,8 +107,15 @@ export const pageQuery = graphql`
                 }
             }
         }
-        profileBackImage: file(
-            relativePath: { eq: "images/profile_back.jpg" }
+        backgroundImage: file(relativePath: { eq: "images/profile_back.jpg" }) {
+            childImageSharp {
+                fluid {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        }
+        fakeBookLogoImage: file(
+            relativePath: { eq: "images/fakebook_logo.png" }
         ) {
             childImageSharp {
                 fluid {
@@ -96,7 +123,27 @@ export const pageQuery = graphql`
                 }
             }
         }
-        fLogoImage: file(relativePath: { eq: "images/f_logo.png" }) {
+        messengerIconImage: file(
+            relativePath: { eq: "images/icon_Messenger.png" }
+        ) {
+            childImageSharp {
+                fluid {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        }
+        twitterIconImage: file(
+            relativePath: { eq: "images/social_Icon_Twitter.png" }
+        ) {
+            childImageSharp {
+                fluid {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        }
+        gitHubIconImage: file(
+            relativePath: { eq: "images/social_Icon_GitHub.png" }
+        ) {
             childImageSharp {
                 fluid {
                     ...GatsbyImageSharpFluid
@@ -109,6 +156,7 @@ export const pageQuery = graphql`
                     frontmatter {
                         id
                         date
+                        contributor
                         tags
                     }
                     html
@@ -117,5 +165,3 @@ export const pageQuery = graphql`
         }
     }
 `;
-
-export default TimelinePage;

@@ -1,28 +1,27 @@
 import * as React from 'react';
-import { Image } from '@components/image';
+import Image from '@components/image';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
-
 import {
-    HeaderWrapper,
+    HeaderContainer,
     ImageWrapper,
     IconWrapper,
     MaterialIcon,
 } from './style';
 
 type Props = {
-    fLogoImageFluid: GatsbyImageSharpFluidFragment;
+    fakeBookLogoImageFluid: GatsbyImageSharpFluidFragment;
 };
 
-const Header: React.FC<Props> = ({ fLogoImageFluid }) => {
+const Header: React.FC<Props> = ({ fakeBookLogoImageFluid }) => {
     return (
-        <HeaderWrapper>
+        <HeaderContainer>
             <ImageWrapper>
-                <Image alt="f-logo" fluid={fLogoImageFluid} />
+                <Image alt="fakebook-logo" fluid={fakeBookLogoImageFluid} />
             </ImageWrapper>
             <IconWrapper onClick={() => alert('To be released.')}>
                 <MaterialIcon>search</MaterialIcon>
             </IconWrapper>
-        </HeaderWrapper>
+        </HeaderContainer>
     );
 };
 

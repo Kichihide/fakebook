@@ -12,9 +12,9 @@
     "scripts": {
         "build": "yarn refresh && gatsby build",
         "dev": "yarn refresh && gatsby develop",
-        "format": "prettier --write *.{js,json} && prettier --write src/*.ts && prettier --write src/**/*.{ts,tsx} && prettier --write src/**/**/*.{ts,tsx,json}",
+        "format": "prettier --write *.{js,json} && prettier --write src/*.ts && prettier --write src/**/*.{ts,tsx} && prettier --write src/**/**/*.{ts,tsx,json} && prettier --write src/**/**/**/*.{ts,tsx}",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "refresh": "rm -f -r ./.cache ./@types/graphql-types.d.ts ./src/*.{js,map,css} ./src/**/*.{js,map,css} ./src/**/**/*.{js,map,css} && yarn format"
+        "refresh": "gatsby clean && rm -f -r ./@types/graphql-types.d.ts ./src/*.{js,map} ./src/**/*.{js,map} ./src/**/**/*.{js,map}./src/**/**/**/*.{js,map}  && yarn format"
     },
     "dependencies": {
         "@babel/plugin-proposal-optional-chaining": "^7.10.1",

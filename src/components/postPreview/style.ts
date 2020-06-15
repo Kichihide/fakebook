@@ -1,15 +1,24 @@
 import styled from 'styled-components';
-import { COLOR, FONT, FONT_WEIGHT, MARGIN } from '@styles/define';
-import { MaterialIcon as BaseMaterialIcon } from '@styles/font-icon';
+import device from '@styles/core/media';
+import { COLOR, FONT, FONT_WEIGHT, CONTENTS } from '@styles/define';
+import { MaterialIcon as BaseMaterialIcon } from '@styles/core/font-icon';
 import {
-    setThumbnailIconSize,
+    setCircleImgSize,
     BaseThumbnailIconWrapper,
 } from '@components/image/style';
 
-const PostPreviewWrapper = styled.article`
+const PostPreviewContainer = styled.article`
     background-color: ${COLOR.POST_PREVIEW_BACK};
     font-size: ${FONT.MEDIUM};
-    margin-bottom: ${MARGIN.BOTTOM_TIMELINE_CONTENT};
+
+    ${device.pc`
+        border-radius: ${CONTENTS.BORDER_RADIUS};
+        box-shadow: ${CONTENTS.BOX_SHADOW};
+        margin-bottom: ${CONTENTS.GAP_PC};
+    `};
+    ${device.sp`
+        margin-bottom: ${CONTENTS.GAP_SP};
+    `};
 `;
 
 const Header = styled.header`
@@ -20,15 +29,15 @@ const Header = styled.header`
     padding: 0.2rem 0.3rem 0;
 `;
 
-const ThumbnailContainer = styled.div`
+const ThumbnailArea = styled.div`
     margin-right: 0.2rem;
 `;
 
 const ThumbnailIconWrapper = styled(BaseThumbnailIconWrapper)`
-    ${() => setThumbnailIconSize('1.8rem')}
+    ${() => setCircleImgSize('1.8rem')}
 `;
 
-const MetaInfo = styled.div`
+const MetaInfoArea = styled.div`
     align-items: flex-start;
     display: flex;
     flex-flow: column;
@@ -79,11 +88,11 @@ const Contents = styled.div`
 `;
 
 export {
-    PostPreviewWrapper,
+    PostPreviewContainer,
     Header,
-    ThumbnailContainer,
+    ThumbnailArea,
     ThumbnailIconWrapper,
-    MetaInfo,
+    MetaInfoArea,
     Name,
     DateWrapper,
     Date,

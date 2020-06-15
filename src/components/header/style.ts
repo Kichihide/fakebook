@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import device from '@styles/media';
+import device from '@styles/core/media';
 import { COLOR, FONT } from '@styles/define';
 import {
     IconWrapper as BaseIconWrapper,
     MaterialIcon as BaseMaterialIcon,
-} from '@styles/font-icon';
+} from '@styles/core/font-icon';
 import { setImgSize } from '@components/image/style';
 
-const HeaderWrapper = styled.header`
+const HeaderContainer = styled.header`
     align-items: center;
     background-color: ${COLOR.HEADER_BACK};
     box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.26);
@@ -20,16 +20,16 @@ const HeaderWrapper = styled.header`
 
     ${device.pc`
         height: 3rem;
-  `}
+  `};
 `;
 
 const ImageWrapper = styled.div`
     ${device.pc`
         ${() => setImgSize('auto', '6rem')}
-    `}
+    `};
     ${device.sp`
         ${() => setImgSize('auto', '5.5rem')}
-    `}
+    `};
 `;
 
 const IconWrapper = styled(BaseIconWrapper)`
@@ -44,4 +44,4 @@ const MaterialIcon = styled(BaseMaterialIcon)`
     font-size: ${FONT.XXXLARGE};
 `;
 
-export { HeaderWrapper, ImageWrapper, IconWrapper, MaterialIcon };
+export { HeaderContainer, ImageWrapper, IconWrapper, MaterialIcon };

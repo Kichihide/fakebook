@@ -3,9 +3,6 @@ import { COLOR } from '@styles/define';
 
 const BaseThumbnailIconWrapper = styled.div`
     border: 4px solid ${COLOR.ICON_THUMBNAIL_BORDER};
-    border-radius: 50%;
-    margin: 0 auto;
-    overflow: hidden;
 `;
 
 const setImgSize = (imgHeight: string, imgWidth: string) => {
@@ -20,7 +17,21 @@ const setImgSize = (imgHeight: string, imgWidth: string) => {
     `;
 };
 
-const setThumbnailIconSize = (diameter: string) => {
+const setCircleImgSize = (diameter: string) => {
+    return `
+        border-radius: 50%;
+        height: ${diameter};
+        overflow: hidden;
+        width: ${diameter};
+        
+        img {
+            height: ${diameter} !important;
+            width: ${diameter} !important;
+        }
+    `;
+};
+
+const setSquareImgSize = (diameter: string) => {
     return `
         height: ${diameter};
         width: ${diameter};
@@ -32,4 +43,9 @@ const setThumbnailIconSize = (diameter: string) => {
     `;
 };
 
-export { BaseThumbnailIconWrapper, setImgSize, setThumbnailIconSize };
+export {
+    BaseThumbnailIconWrapper,
+    setImgSize,
+    setCircleImgSize,
+    setSquareImgSize,
+};

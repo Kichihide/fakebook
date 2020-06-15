@@ -37,4 +37,4 @@ const Image: React.FC<ImageProps> = ({ alt, fluid }) => {
     return <Img alt={alt} fluid={fluidObject} />;
 };
 
-export { Image };
+export default Image;

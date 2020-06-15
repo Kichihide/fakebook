@@ -1,42 +1,20 @@
 import * as React from 'react';
-import { Image } from '@components/image';
-import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
-import Row from './Row';
-
+import Row from './sub/Row';
 import {
-    ProfileTileWrapper,
-    BackgroundImage,
-    ImageWrapper,
-    NameContainer,
-    Name,
-    UserDataContainer,
+    PersonalInfoContainer,
+    UserDataArea,
     Text,
-    ButtonContainer,
+    ButtonArea,
     Button,
-    ThumbnailContainer,
-    ThumbnailIconWrapper,
 } from './style';
 
-type Props = {
-    profileBackImageFluid: GatsbyImageSharpFluidFragment;
-    thumbnailImageFluid: GatsbyImageSharpFluidFragment;
-};
+type Props = {};
 
-const ProfileTile: React.FC<Props> = ({
-    profileBackImageFluid,
-    thumbnailImageFluid,
-}) => {
+const PersonalInfo: React.FC<Props> = ({}) => {
+    // Todo: Json定義
     return (
-        <ProfileTileWrapper>
-            <BackgroundImage>
-                <ImageWrapper>
-                    <Image alt="profile-back" fluid={profileBackImageFluid} />
-                </ImageWrapper>
-            </BackgroundImage>
-            <NameContainer>
-                <Name>鵜木 義秀</Name>
-            </NameContainer>
-            <UserDataContainer>
+        <PersonalInfoContainer>
+            <UserDataArea>
                 <Row iconType="business_center" isEvenRow={true}>
                     <Text isBlock={true} isStrong={true}>
                         シンプレクス株式会社
@@ -77,19 +55,14 @@ const ProfileTile: React.FC<Props> = ({
                         既婚
                     </Text>
                 </Row>
-            </UserDataContainer>
-            <ButtonContainer>
+            </UserDataArea>
+            <ButtonArea>
                 <Button onClick={() => alert('To be released.')}>
                     基本データを見る
                 </Button>
-            </ButtonContainer>
-            <ThumbnailContainer>
-                <ThumbnailIconWrapper>
-                    <Image alt="thumbnail" fluid={thumbnailImageFluid} />
-                </ThumbnailIconWrapper>
-            </ThumbnailContainer>
-        </ProfileTileWrapper>
+            </ButtonArea>
+        </PersonalInfoContainer>
     );
 };
 
-export default ProfileTile;
+export default PersonalInfo;

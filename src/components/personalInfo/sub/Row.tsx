@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-import { IconWrapper, MaterialIcon, DataRow, TextWrapper } from './style';
+import { IconWrapper, MaterialIcon, DataRow, TextWrapper } from '../style';
 
 type Props = {
     isEvenRow: boolean;

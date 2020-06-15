@@ -1,43 +1,31 @@
 import styled from 'styled-components';
-import { COLOR, FONT, FONT_WEIGHT, MARGIN } from '@styles/define';
+import device from '@styles/core/media';
+import { COLOR, FONT, FONT_WEIGHT, CONTENTS } from '@styles/define';
 import {
     MaterialIcon as BaseMaterialIcon,
     IconWrapper as BaseIconWrapper,
-} from '@styles/font-icon';
-import {
-    BaseThumbnailIconWrapper,
-    setImgSize,
-    setThumbnailIconSize,
-} from '@components/image/style';
+} from '@styles/core/font-icon';
 
-const ProfileTileWrapper = styled.div`
-    background-color: ${COLOR.PROFILE_TAIL_BACK};
-    margin-bottom: ${MARGIN.BOTTOM_TIMELINE_CONTENT};
+const PersonalInfoContainer = styled.div`
+    background-color: ${COLOR.HERO_CONTENTS_BACK};
+    height: min-content;
+
+    ${device.pc`
+        border-radius: ${CONTENTS.BORDER_RADIUS};
+        box-shadow: ${CONTENTS.BOX_SHADOW};
+        margin-bottom: ${CONTENTS.GAP_PC};
+    `};
+    ${device.sp`
+        margin-bottom: ${CONTENTS.GAP_SP};
+    `};
 `;
 
-const BackgroundImage = styled.div`
-    overflow: hidden;
-`;
+const UserDataArea = styled.div`
+    margin: 0 0.8rem;
 
-const ImageWrapper = styled.div`
-    ${() => setImgSize('10rem', '100vw')}
-`;
-
-const NameContainer = styled.div`
-    align-items: flex-end;
-    display: flex;
-    font-size: ${FONT.XLARGE};
-    height: 6.6rem;
-    justify-content: center;
-    width: 100vw;
-`;
-
-const Name = styled.h3`
-    margin: 0 0 0.4rem;
-`;
-
-const UserDataContainer = styled.div`
-    padding: 0 0.8rem;
+    ${device.sp`
+        border-top: .8px solid ${COLOR.SEPARATE_BORDER};
+    `};
 `;
 
 const DataRow = styled.div<{ isEvenRow: boolean }>`
@@ -47,7 +35,6 @@ const DataRow = styled.div<{ isEvenRow: boolean }>`
     padding: 0.26rem;
 
     &:first-child {
-        border-top: 0.5px solid ${COLOR.USER_DATA_CONTAINER_BORDER};
         padding-top: 0.8rem;
     }
 
@@ -93,23 +80,17 @@ const MaterialIcon = styled(BaseMaterialIcon)<{ iconType: string }>`
     `}
 `;
 
-const ThumbnailContainer = styled.div`
-    position: absolute;
-    top: 6.67rem;
-    right: 0;
-    left: 0;
-`;
-
-const ThumbnailIconWrapper = styled(BaseThumbnailIconWrapper)`
-    ${() => setThumbnailIconSize('9rem')}
-`;
-
-const ButtonContainer = styled.div`
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin: 0 0.8rem;
-    padding-bottom: 0.8rem;
+const ButtonArea = styled.div`
+    ${device.pc`
+        display: none;
+    `};
+    ${device.sp`
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 .8rem;
+        padding-bottom: .8rem;
+    `};
 `;
 
 // Todo: 共通化 ※色、サイズも合わせて検討
@@ -127,19 +108,13 @@ const Button = styled.div`
 `;
 
 export {
-    ProfileTileWrapper,
-    BackgroundImage,
-    ImageWrapper,
-    NameContainer,
-    Name,
-    UserDataContainer,
+    PersonalInfoContainer,
+    UserDataArea,
     DataRow,
     TextWrapper,
     Text,
     IconWrapper,
     MaterialIcon,
-    ButtonContainer,
+    ButtonArea,
     Button,
-    ThumbnailContainer,
-    ThumbnailIconWrapper,
 };

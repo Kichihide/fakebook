@@ -1,55 +1,51 @@
 import * as React from 'react';
-import device from '@styles/media';
+import Image from '@components/image';
 import {
     GatsbyImageSharpFluidFragment,
     MarkdownRemarkFrontmatter,
 } from 'types/graphql-types';
-
 import {
-    PostPreviewWrapper,
+    PostPreviewContainer,
     Header,
-    ThumbnailContainer,
+    ThumbnailArea,
     ThumbnailIconWrapper,
-    MetaInfo,
+    MetaInfoArea,
     Name,
     DateWrapper,
     Date,
     MaterialIcon,
     Contents,
 } from './style';
-import { Image } from '@components/image';
 
 type Props = {
-    userName?: String;
     fields: MarkdownRemarkFrontmatter;
     html: any;
     thumbnailImageFluid: GatsbyImageSharpFluidFragment;
 };
 
 const PostPreview: React.FC<Props> = ({
-    userName,
     fields,
     html,
     thumbnailImageFluid,
 }) => {
     return (
-        <PostPreviewWrapper>
+        <PostPreviewContainer>
             <Header>
-                <ThumbnailContainer>
+                <ThumbnailArea>
                     <ThumbnailIconWrapper>
                         <Image alt="thumbnail" fluid={thumbnailImageFluid} />
                     </ThumbnailIconWrapper>
-                </ThumbnailContainer>
-                <MetaInfo>
-                    <Name>{userName}</Name>
+                </ThumbnailArea>
+                <MetaInfoArea>
+                    <Name>{fields.contributor}</Name>
                     <DateWrapper>
                         <Date>{fields.date}</Date>
                         <MaterialIcon>public</MaterialIcon>
                     </DateWrapper>
-                </MetaInfo>
+                </MetaInfoArea>
             </Header>
             <Contents dangerouslySetInnerHTML={{ __html: html }} />
-        </PostPreviewWrapper>
+        </PostPreviewContainer>
     );
 };
 
