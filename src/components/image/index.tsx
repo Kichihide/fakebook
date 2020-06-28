@@ -1,40 +1,29 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import Img, { FluidObject } from 'gatsby-image';
+import useFluidObject from '@components/image/useFluidObject';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 
-function createFluidObject(
-    fluid: GatsbyImageSharpFluidFragment
-): FluidObject | null {
-    const { aspectRatio, src, srcSet, sizes, base64 } = fluid;
-
-    if (!base64) {
-        return null;
-    }
-
-    return {
-        aspectRatio: aspectRatio,
-        src: src,
-        srcSet: srcSet,
-        sizes: sizes,
-        base64: base64,
-    };
-}
-
-/**
- * Image wrapper
- */
-type ImageProps = {
+interface ContainerProps {
     alt: string;
     fluid: GatsbyImageSharpFluidFragment;
-};
+}
 
-const Image: React.FC<ImageProps> = ({ alt, fluid }) => {
-    const fluidObject = createFluidObject(fluid);
+const ImageContainer: FC<ContainerProps> = ({ alt, fluid }) => {
+    const [fluidObject] = useFluidObject(fluid);
     if (!fluidObject) {
+        // Todo: データ不備時の画面表示
         return null;
     }
-
-    return <Img alt={alt} fluid={fluidObject} />;
+    return <ImageComponent alt={alt} fluid={fluidObject} />;
 };
 
-export default Image;
+interface ImageProps {
+    alt: string;
+    fluid: FluidObject;
+}
+
+const ImageComponent: FC<ImageProps> = ({ alt, fluid }) => {
+    return <Img alt={alt} fluid={fluid} />;
+};
+
+export default ImageContainer;

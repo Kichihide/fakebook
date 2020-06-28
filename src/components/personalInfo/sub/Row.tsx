@@ -1,12 +1,18 @@
-import * as React from 'react';
+import React, { FC, ComponentProps } from 'react';
 import { IconWrapper, MaterialIcon, DataRow, TextWrapper } from '../style';
 
-type Props = {
-    isEvenRow: boolean;
-    iconType: string;
+type ContainerProps = ComponentProps<typeof RowComponent>;
+
+const RowContainer: FC<ContainerProps> = (props: ContainerProps) => {
+    return <RowComponent {...props} />;
 };
 
-const Row: React.FC<Props> = ({ isEvenRow, iconType, children }) => {
+interface RowProps {
+    isEvenRow: boolean;
+    iconType: string;
+}
+
+const RowComponent: FC<RowProps> = ({ isEvenRow, iconType, children }) => {
     return (
         <DataRow isEvenRow={isEvenRow}>
             <IconWrapper>
@@ -17,4 +23,4 @@ const Row: React.FC<Props> = ({ isEvenRow, iconType, children }) => {
     );
 };
 
-export default Row;
+export default RowContainer;

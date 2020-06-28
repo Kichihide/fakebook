@@ -1,28 +1,29 @@
-import * as React from 'react';
-import Image from '@components/image';
+import React, { FC, ComponentProps } from 'react';
+import ImageContainer from '@components/image';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
-import {
-    HeaderContainer,
-    ImageWrapper,
-    IconWrapper,
-    MaterialIcon,
-} from './style';
+import { Header, ImageWrapper, IconWrapper, MaterialIcon } from './style';
 
-type Props = {
-    fakeBookLogoImageFluid: GatsbyImageSharpFluidFragment;
+type ContainerProps = ComponentProps<typeof HeaderComponent>;
+
+const HeaderContainer: FC<ContainerProps> = (props: ContainerProps) => {
+    return <HeaderComponent {...props} />;
 };
 
-const Header: React.FC<Props> = ({ fakeBookLogoImageFluid }) => {
+interface HeaderProps {
+    fakeBookLogoImageFluid: GatsbyImageSharpFluidFragment;
+}
+
+const HeaderComponent: FC<HeaderProps> = ({ fakeBookLogoImageFluid }) => {
     return (
-        <HeaderContainer>
+        <Header>
             <ImageWrapper>
-                <Image alt="fakebook-logo" fluid={fakeBookLogoImageFluid} />
+                <ImageContainer alt="fakebook-logo" fluid={fakeBookLogoImageFluid} />
             </ImageWrapper>
             <IconWrapper onClick={() => alert('To be released.')}>
                 <MaterialIcon>search</MaterialIcon>
             </IconWrapper>
-        </HeaderContainer>
+        </Header>
     );
 };
 
-export default Header;
+export default HeaderContainer;

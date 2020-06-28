@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import device from '@styles/core/media';
 import { COLOR, FONT, CONTENTS } from '@styles/define';
-import {
-    BaseThumbnailIconWrapper,
-    setImgSize,
-    setCircleImgSize,
-} from '@components/image/style';
+import { BaseThumbnailIconWrapper, setImgSize, setCircleImgSize } from '@components/image/style';
 
 const HeroWrapper = styled.div`
     background-color: ${COLOR.HERO_CONTENTS_BACK};
@@ -15,7 +11,7 @@ const HeroWrapper = styled.div`
     `};
 `;
 
-const HeroContainer = styled.div`
+const Hero = styled.div`
     align-content: center;
     display: flex;
     flex-flow: column;
@@ -73,7 +69,7 @@ const ProfileArea = styled.div`
     `};
 `;
 
-const Name = styled.div`
+const NameBox = styled.div`
     margin-bottom: 0.8rem;
     text-align: center;
 `;
@@ -129,6 +125,15 @@ const RomanNotation = styled.span`
     `};
 `;
 
+const Name = styled.span`
+    ${device.pc`
+        margin: 0 .1rem;
+    `};
+    ${device.sp`
+        margin: 0 .05rem;
+    `};
+`;
+
 const ShortMessage = styled.div`
     color: ${COLOR.HERO_MESSAGE};
     text-align: center;
@@ -145,14 +150,15 @@ const ShortMessage = styled.div`
 
 export {
     HeroWrapper,
-    HeroContainer,
+    Hero,
     HeroImage,
     ImageWrapper,
     ThumbnailContainer,
     ThumbnailIconWrapper,
     ProfileArea,
-    Name,
+    NameBox,
     JapanName,
     RomanNotation,
+    Name,
     ShortMessage,
 };

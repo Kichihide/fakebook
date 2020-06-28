@@ -10,17 +10,13 @@
         "jsx": "react",
         "lib": ["dom", "esnext"],
         "paths": {
-            "@components*": ["./src/components/*"],
-            "@styles*": ["./src/styles/*"],
-            "types*": ["./@types/*"]
+            "@components/*": ["./src/components/*"],
+            "@commons/*": ["./src/commons/*"],
+            "@layouts/*": ["./src/layouts/*"],
+            "@styles/*": ["./src/styles/*"],
+            "types/*": ["./graphql-types/*"]
         }
     },
     "include": ["./src/**/*", "./src/**/**/*"],
-    "exclude": [
-        "**/node_modules",
-        "./public",
-        "./.cache",
-        "./@types",
-        "./gatsby-node"
-    ]
+    "exclude": ["**/node_modules", "./public", "./.cache", "./graphql-types", "./gatsby-node"]
 }

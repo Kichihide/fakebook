@@ -12,7 +12,7 @@ const NavigationWrapper = styled.div`
     `};
 `;
 
-const NavigationContainer = styled.div`
+const Navigation = styled.div`
     display: flex;
     max-width: calc(${CONTENTS.MAX_WIDTH} * 0.93);
 
@@ -102,7 +102,6 @@ const MessengerIcon = styled.div`
     `};
 `;
 
-// TODO: スマホツールチップ表示
 const SocialIconArea = styled.div`
     align-items: center;
     display: flex;
@@ -126,7 +125,7 @@ const GitHubIcon = styled.div`
 
 export {
     NavigationWrapper,
-    NavigationContainer,
+    Navigation,
     MenuArea,
     Menu,
     MenuItem,

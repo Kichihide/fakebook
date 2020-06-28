@@ -1,11 +1,8 @@
-import * as React from 'react';
-import Image from '@components/image';
+import React, { FC, ComponentProps } from 'react';
+import ImageContainer from '@components/image';
+import { GatsbyImageSharpFluidFragment, MarkdownRemarkFrontmatter } from 'types/graphql-types';
 import {
-    GatsbyImageSharpFluidFragment,
-    MarkdownRemarkFrontmatter,
-} from 'types/graphql-types';
-import {
-    PostPreviewContainer,
+    PostPreview,
     Header,
     ThumbnailArea,
     ThumbnailIconWrapper,
@@ -17,23 +14,25 @@ import {
     Contents,
 } from './style';
 
-type Props = {
+type ContainerProps = ComponentProps<typeof PostPreviewComponent>;
+
+const PostPreviewContainer: FC<ContainerProps> = (props: ContainerProps) => {
+    return <PostPreviewComponent {...props} />;
+};
+
+interface PostPreviewProps {
     fields: MarkdownRemarkFrontmatter;
     html: any;
     thumbnailImageFluid: GatsbyImageSharpFluidFragment;
-};
+}
 
-const PostPreview: React.FC<Props> = ({
-    fields,
-    html,
-    thumbnailImageFluid,
-}) => {
+const PostPreviewComponent: FC<PostPreviewProps> = ({ fields, html, thumbnailImageFluid }) => {
     return (
-        <PostPreviewContainer>
+        <PostPreview>
             <Header>
                 <ThumbnailArea>
                     <ThumbnailIconWrapper>
-                        <Image alt="thumbnail" fluid={thumbnailImageFluid} />
+                        <ImageContainer alt="thumbnail" fluid={thumbnailImageFluid} />
                     </ThumbnailIconWrapper>
                 </ThumbnailArea>
                 <MetaInfoArea>
@@ -45,8 +44,8 @@ const PostPreview: React.FC<Props> = ({
                 </MetaInfoArea>
             </Header>
             <Contents dangerouslySetInnerHTML={{ __html: html }} />
-        </PostPreviewContainer>
+        </PostPreview>
     );
 };
 
-export default PostPreview;
+export default PostPreviewContainer;

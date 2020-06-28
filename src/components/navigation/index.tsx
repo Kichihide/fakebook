@@ -1,9 +1,9 @@
-import * as React from 'react';
-import Image from '@components/image';
-import { GatsbyImageSharpFluidFragment } from 'typesgraphql-types';
+import React, { FC, ComponentProps } from 'react';
+import ImageContainer from '@components/image';
+import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 import {
     NavigationWrapper,
-    NavigationContainer,
+    Navigation,
     MenuArea,
     Menu,
     MenuItem,
@@ -16,20 +16,22 @@ import {
     GitHubIcon,
 } from './style';
 
-type Props = {
+type ContainerProps = ComponentProps<typeof NavigationComponent>;
+
+const NavigationContainer: FC<ContainerProps> = (props: ContainerProps) => {
+    return <NavigationComponent {...props} />;
+};
+
+interface NavigationProps {
     messengerIconImageFluid: GatsbyImageSharpFluidFragment;
     twitterIconFluid: GatsbyImageSharpFluidFragment;
     gitHubIconFluid: GatsbyImageSharpFluidFragment;
-};
+}
 
-const Navigation: React.FC<Props> = ({
-    messengerIconImageFluid,
-    twitterIconFluid,
-    gitHubIconFluid,
-}) => {
+const NavigationComponent: FC<NavigationProps> = ({ messengerIconImageFluid, twitterIconFluid, gitHubIconFluid }) => {
     return (
         <NavigationWrapper>
-            <NavigationContainer>
+            <Navigation>
                 <MenuArea>
                     <Menu>
                         <MenuItem active={true}>タイムライン</MenuItem>
@@ -40,29 +42,23 @@ const Navigation: React.FC<Props> = ({
                     <ButtonArea>
                         <PrimaryButton>
                             <MessengerIcon>
-                                <Image
-                                    alt="messenger-icon"
-                                    fluid={messengerIconImageFluid}
-                                />
+                                <ImageContainer alt="messenger-icon" fluid={messengerIconImageFluid} />
                             </MessengerIcon>
                             <span>メッセージ</span>
                         </PrimaryButton>
                     </ButtonArea>
                     <SocialIconArea>
                         <TwitterIcon>
-                            <Image
-                                alt="twitter-icon"
-                                fluid={twitterIconFluid}
-                            />
+                            <ImageContainer alt="twitter-icon" fluid={twitterIconFluid} />
                         </TwitterIcon>
                         <GitHubIcon>
-                            <Image alt="github-icon" fluid={gitHubIconFluid} />
+                            <ImageContainer alt="github-icon" fluid={gitHubIconFluid} />
                         </GitHubIcon>
                     </SocialIconArea>
                 </ContentsWrapper>
-            </NavigationContainer>
+            </Navigation>
         </NavigationWrapper>
     );
 };
 
-export default Navigation;
+export default NavigationContainer;

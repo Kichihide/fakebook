@@ -2,12 +2,9 @@ import styled from 'styled-components';
 import device from '@styles/core/media';
 import { COLOR, FONT, FONT_WEIGHT, CONTENTS } from '@styles/define';
 import { MaterialIcon as BaseMaterialIcon } from '@styles/core/font-icon';
-import {
-    setCircleImgSize,
-    BaseThumbnailIconWrapper,
-} from '@components/image/style';
+import { setCircleImgSize, BaseThumbnailIconWrapper } from '@components/image/style';
 
-const PostPreviewContainer = styled.article`
+const PostPreview = styled.article`
     background-color: ${COLOR.POST_PREVIEW_BACK};
     font-size: ${FONT.MEDIUM};
 
@@ -88,7 +85,7 @@ const Contents = styled.div`
 `;
 
 export {
-    PostPreviewContainer,
+    PostPreview,
     Header,
     ThumbnailArea,
     ThumbnailIconWrapper,

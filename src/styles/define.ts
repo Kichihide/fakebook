@@ -2,8 +2,10 @@
 
 const BASE_CONTENT_BACK = '#ffffff';
 const COLOR_PRIMARY = '#1876f2';
+const BASE_TEXT_COLOR = '#050505';
 
 const COLOR = {
+    BASE_TEXT: BASE_TEXT_COLOR,
     CONTENT_BACK: '#ffffff',
     HEADER_BACK: '#3b5998',
     HERO_CONTENTS_BACK: BASE_CONTENT_BACK,

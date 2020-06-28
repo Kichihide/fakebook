@@ -1,9 +1,5 @@
 import media from 'styled-media-query';
-import {
-    ThemedStyledProps,
-    InterpolationValue,
-    FlattenInterpolation,
-} from 'styled-components';
+import { ThemedStyledProps, InterpolationValue, FlattenInterpolation } from 'styled-components';
 
 type InterpolationFunction<Props, Theme> = (
     props: ThemedStyledProps<Props, Theme>

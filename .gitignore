@@ -11,4 +11,4 @@ src/**/*.js
 src/**/**/*.js
 src/**/*.css
 src/**/**/*.css
-@types/
+graphql-types/

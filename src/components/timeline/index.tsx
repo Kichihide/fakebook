@@ -1,34 +1,42 @@
-import * as React from 'react';
-import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
-import PostPreview from '@components/postPreview';
-import { TimelineContainer } from './style';
+import React, { FC } from 'react';
+import PostPreviewContainer from '@components/postPreview';
+import usePostList from '@components/timeline/usePostList';
+import { GatsbyImageSharpFluidFragment, MarkdownRemarkEdge } from 'types/graphql-types';
+import { Timeline } from './style';
 
-type Props = {
-    postList: Array<any>;
+interface ContainerProps {
+    postList: Array<MarkdownRemarkEdge>;
     thumbnailImageFluid: GatsbyImageSharpFluidFragment;
+}
+
+const TimelineContainer: FC<ContainerProps> = ({ postList, thumbnailImageFluid }) => {
+    const [sortedPostList] = usePostList(postList);
+
+    return <TimelineComponent postList={sortedPostList} thumbnailImageFluid={thumbnailImageFluid} />;
 };
 
-const Timeline: React.FC<Props> = ({ postList, thumbnailImageFluid }) => {
-    const _postList = postList.sort((a, b) => {
-        return a < b ? 1 : -1;
-    });
+interface TimelineProps {
+    postList: Array<MarkdownRemarkEdge>;
+    thumbnailImageFluid: GatsbyImageSharpFluidFragment;
+}
+
+const TimelineComponent: FC<TimelineProps> = ({ postList, thumbnailImageFluid }) => {
     return (
-        <TimelineContainer>
+        <Timeline>
             {(() => {
-                return _postList.map((edge: any) => {
-                    const { frontmatter, html } = edge.node;
+                return postList.map((edge: any) => {
                     return (
-                        <PostPreview
-                            key={frontmatter.id}
-                            fields={frontmatter}
-                            html={html}
+                        <PostPreviewContainer
+                            key={edge.node.frontmatter.id}
+                            fields={edge.node.frontmatter}
+                            html={edge.node.html}
                             thumbnailImageFluid={thumbnailImageFluid}
                         />
                     );
                 });
             })()}
-        </TimelineContainer>
+        </Timeline>
     );
 };
 
-export default Timeline;
+export default TimelineContainer;

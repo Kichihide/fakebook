@@ -1,10 +1,66 @@
 {
     "siteConfig": {
-        "siteTitle": "fakebook",
-        "profile": {
-            "japanName": "鵜木 義秀",
-            "romanNotation": "Yoshihide Unoki",
-            "shortMessage": "デザイナー、エンジニア、コンサルタントが仲良く仕事できるように頑張ってます。React / Vue / Cordova / TypeScript / UIUX / デザイン / Team Building / 副業 あたりのことをつぶやきます。"
-        }
+        "siteTitle": "fakebook"
+    },
+    "profile": {
+        "name": {
+            "firstName": "義秀",
+            "lastName": "鵜木"
+        },
+        "romanNotation": {
+            "firstName": "Yoshihide",
+            "lastName": "Unoki"
+        },
+        "shortMessage": "デザイナー、エンジニア、コンサルタントが仲良く仕事できるように頑張ってます。React / Vue / Cordova / TypeScript / UIUX / デザイン / Team Building / 副業 あたりのことをつぶやきます。",
+        "work": {
+            "index": 1,
+            "company": "シンプレクス株式会社",
+            "job": "フロントエンドエンジニア 兼 デザイナー",
+            "term": {
+                "from": {
+                    "year": 2017,
+                    "month": 1
+                }
+            }
+        },
+        "privateActivities": [
+            {
+                "index": 1,
+                "company": "某スタートアップ企業（立ち上げ）",
+                "job": "リードフロントエンドエンジニア",
+                "term": {
+                    "from": {
+                        "year": 2019,
+                        "month": 2
+                    }
+                }
+            }
+        ],
+        "workHistory": [
+            {
+                "index": 1,
+                "company": "株式会社ジーニー",
+                "job": "営業・Web広告運用",
+                "term": {
+                    "from": {
+                        "year": 2016,
+                        "month": 12
+                    },
+                    "to": {
+                        "year": 2015,
+                        "month": 10
+                    }
+                }
+            }
+        ],
+        "address": {
+            "prefectures": "東京都",
+            "city": "渋谷区"
+        },
+        "homeTown": {
+            "prefectures": "大阪府",
+            "city": "大阪狭山市"
+        },
+        "marriage": true
     }
 }

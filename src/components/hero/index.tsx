@@ -1,76 +1,81 @@
-import * as React from 'react';
-import Image from '@components/image';
-import {
-    GatsbyImageSharpFluidFragment,
-    JsonJsonSiteConfigProfile,
-} from 'types/graphql-types';
+import React, { FC } from 'react';
+import ImageContainer from '@components/image';
+import useProfile, { Profile } from '@components/hero/useProfile';
+import { GatsbyImageSharpFluidFragment, JsonJsonProfile } from 'types/graphql-types';
 import {
     HeroWrapper,
-    HeroContainer,
+    Hero,
     HeroImage,
     ImageWrapper,
     ThumbnailContainer,
     ThumbnailIconWrapper,
     ProfileArea,
-    Name,
+    NameBox,
     JapanName,
     RomanNotation,
+    Name,
     ShortMessage,
 } from './style';
 
-type Props = {
-    profileData?: JsonJsonSiteConfigProfile | null;
+interface ContainerProps {
+    jsonJsonProfile: JsonJsonProfile;
     backgroundImageFluid: GatsbyImageSharpFluidFragment;
     thumbnailImageFluid: GatsbyImageSharpFluidFragment;
+}
+
+const HeroContainer: FC<ContainerProps> = ({ jsonJsonProfile, backgroundImageFluid, thumbnailImageFluid }) => {
+    const [profile] = useProfile(jsonJsonProfile);
+
+    if (!profile) {
+        // Todo: データ不備時の画面表示
+        return null;
+    }
+
+    return (
+        <HeroComponent
+            profile={profile}
+            backgroundImageFluid={backgroundImageFluid}
+            thumbnailImageFluid={thumbnailImageFluid}
+        />
+    );
 };
 
-const Hero: React.FC<Props> = ({
-    profileData,
-    backgroundImageFluid,
-    thumbnailImageFluid,
-}) => {
+interface HeroProps {
+    profile: Profile;
+    backgroundImageFluid: GatsbyImageSharpFluidFragment;
+    thumbnailImageFluid: GatsbyImageSharpFluidFragment;
+}
+
+const HeroComponent: FC<HeroProps> = ({ profile, backgroundImageFluid, thumbnailImageFluid }) => {
     return (
         <HeroWrapper>
-            <HeroContainer>
+            <Hero>
                 <HeroImage>
                     <ImageWrapper>
-                        <Image
-                            alt="profile-back"
-                            fluid={backgroundImageFluid}
-                        />
+                        <ImageContainer alt="profile-back" fluid={backgroundImageFluid} />
                     </ImageWrapper>
                     <ThumbnailContainer>
                         <ThumbnailIconWrapper>
-                            <Image
-                                alt="thumbnail"
-                                fluid={thumbnailImageFluid}
-                            />
+                            <ImageContainer alt="thumbnail" fluid={thumbnailImageFluid} />
                         </ThumbnailIconWrapper>
                     </ThumbnailContainer>
                 </HeroImage>
-                {(() => {
-                    // Todo: SiteConfigデータのNullチェックを共通化
-                    if (profileData) {
-                        return (
-                            <ProfileArea>
-                                <Name>
-                                    <JapanName>
-                                        {profileData.japanName}
-                                    </JapanName>
-                                    <RomanNotation>
-                                        {profileData.romanNotation}
-                                    </RomanNotation>
-                                </Name>
-                                <ShortMessage>
-                                    {profileData.shortMessage}
-                                </ShortMessage>
-                            </ProfileArea>
-                        );
-                    }
-                })()}
-            </HeroContainer>
+                <ProfileArea>
+                    <NameBox>
+                        <JapanName>
+                            <Name>{profile.name.lastName}</Name>
+                            <Name>{profile.name.firstName}</Name>
+                        </JapanName>
+                        <RomanNotation>
+                            <Name>{profile.romanNotation.lastName}</Name>
+                            <Name>{profile.romanNotation.firstName}</Name>
+                        </RomanNotation>
+                    </NameBox>
+                    <ShortMessage>{profile.shortMessage}</ShortMessage>
+                </ProfileArea>
+            </Hero>
         </HeroWrapper>
     );
 };
 
-export default Hero;
+export default HeroContainer;

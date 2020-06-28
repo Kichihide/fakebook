@@ -1,51 +1,77 @@
 const query = `
-     {
+    {
         siteConfigJson: jsonJson {
             siteConfig {
                 siteTitle
-                profile {
-                    japanName
-                    romanNotation
-                    shortMessage
+            }
+            profile {
+                name {
+                    firstName
+                    lastName
+                }
+                romanNotation {
+                    firstName
+                    lastName
+                }
+                shortMessage
+                work {
+                    index
+                    company
+                    job
+                    term {
+                        from {
+                            month
+                            year
+                        }
+                    }
+                }
+                privateActivities {
+                    index
+                    company
+                    job
+                    term {
+                        from {
+                            month
+                            year
+                        }
+                    }
+                }
+                workHistory {
+                    index
+                    company
+                    job
+                    term {
+                        from {
+                            month
+                            year
+                        }
+                        to {
+                            month
+                            year
+                        }
+                    }
+                }
+                address {
+                    city
+                    prefectures
+                }
+                homeTown {
+                    city
+                    prefectures
+                }
+                marriage
+            }
+        }
+        allImageSharp {
+            edges {
+                node {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
                 }
             }
         }
-        thumbnailImage: file(relativePath: { eq: "images/thumbnail.jpg" }) {
-            childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        }
-        backgroundImage: file(relativePath: { eq: "images/profile_back.jpg" }) {
-            childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        }
-        fakeBookLogoImage: file(relativePath: { eq: "images/fakebook_logo.png" }) {
-            childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        }
-        twitterIconImage: file(relativePath: { eq: "images/social_Icon_Twitter.png" }) {
-            childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        }
-        gitHubIconImage: file(relativePath: { eq: "images/social_Icon_GitHub.png" }) {
-            childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        }
-        timelineData: allMarkdownRemark {
+        allMarkdownRemark {
             edges {
                 node {
                     frontmatter {

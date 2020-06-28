@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 import device from '@styles/core/media';
 import { COLOR, FONT, FONT_WEIGHT, CONTENTS } from '@styles/define';
-import {
-    MaterialIcon as BaseMaterialIcon,
-    IconWrapper as BaseIconWrapper,
-} from '@styles/core/font-icon';
+import { MaterialIcon as BaseMaterialIcon, IconWrapper as BaseIconWrapper } from '@styles/core/font-icon';
 
-const PersonalInfoContainer = styled.div`
+const PersonalInfo = styled.div`
     background-color: ${COLOR.HERO_CONTENTS_BACK};
     height: min-content;
 
@@ -20,11 +17,25 @@ const PersonalInfoContainer = styled.div`
     `};
 `;
 
+const Header = styled.div`
+    ${device.sp`
+        display: none;
+    `};
+    ${device.pc`
+        font-weight: ${FONT_WEIGHT.BOLD};
+        margin: .8rem 0.8rem 0;
+    `};
+`;
+
 const UserDataArea = styled.div`
     margin: 0 0.8rem;
 
+    ${device.pc`
+        padding-top: .24rem;
+    `};
     ${device.sp`
         border-top: .8px solid ${COLOR.SEPARATE_BORDER};
+        padding-top: .8rem;
     `};
 `;
 
@@ -33,10 +44,6 @@ const DataRow = styled.div<{ isEvenRow: boolean }>`
     display: flex;
     font-size: ${FONT.LARGE};
     padding: 0.26rem;
-
-    &:first-child {
-        padding-top: 0.8rem;
-    }
 
     &:last-child {
         padding-bottom: 0.8rem;
@@ -47,11 +54,23 @@ const TextWrapper = styled.div`
     line-height: 1.34;
 `;
 
+const Heading = styled.div`
+    display: block;
+    font-size: 0.95em;
+    opacity: 0.8;
+`;
+
 const Text = styled.span<{ isBlock: boolean; isStrong: boolean }>`
+    display: inline-block;
+
     ${({ isStrong }) => isStrong && `font-weight: ${FONT_WEIGHT.BOLD}`};
     ${({ isBlock }) => isBlock && `display: block`};
 
     &:not(:last-child) {
+        margin-right: 0.2rem;
+    }
+
+    span:not(:last-child) {
         margin-right: 0.2rem;
     }
 `;
@@ -108,10 +127,12 @@ const Button = styled.div`
 `;
 
 export {
-    PersonalInfoContainer,
+    PersonalInfo,
+    Header,
     UserDataArea,
     DataRow,
     TextWrapper,
+    Heading,
     Text,
     IconWrapper,
     MaterialIcon,

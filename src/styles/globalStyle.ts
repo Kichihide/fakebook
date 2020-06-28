@@ -1,10 +1,11 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import device from '@styles/core/media';
-import { CONTENTS } from '@styles/define';
+import { CONTENTS, COLOR } from '@styles/define';
 
 const GlobalStyle = createGlobalStyle`
     html, body, code, kbd, samp, tt, pre, code,
     h1, h2, h3, h4, h5, h6 {
+        color: ${COLOR.BASE_TEXT};
         font-family: -apple-system, "hiragino kaku gothic pro", meiryo, "ms pgothic", sans-serif;
     }
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-const TimelineContainer = styled.section`
+const Timeline = styled.section`
     width: 100%;
 `;
 
-export { TimelineContainer };
+export { Timeline };

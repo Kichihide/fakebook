@@ -1,68 +1,100 @@
-import * as React from 'react';
-import Row from './sub/Row';
-import {
-    PersonalInfoContainer,
-    UserDataArea,
-    Text,
-    ButtonArea,
-    Button,
-} from './style';
+import React, { FC } from 'react';
+import usePersonal, { PersonalData } from '@components/personalInfo/usePersonal';
+import RowContainer from './sub/Row';
+import { PersonalInfo, Header, UserDataArea, Heading, Text, ButtonArea, Button } from './style';
+import { JsonJsonProfile } from 'types/graphql-types';
 
-type Props = {};
+interface ContainerProps {
+    jsonJsonProfile: JsonJsonProfile;
+}
 
-const PersonalInfo: React.FC<Props> = ({}) => {
-    // Todo: Json定義
+const PersonalInfoContainer: FC<ContainerProps> = ({ jsonJsonProfile }) => {
+    const [personalData] = usePersonal(jsonJsonProfile);
+
+    if (!personalData) {
+        // Todo: データ不備時の画面表示
+        return null;
+    }
+
+    return <PersonalInfoComponent personalData={personalData} />;
+};
+
+interface PersonalInfoProps {
+    personalData: PersonalData;
+}
+
+const PersonalInfoComponent: FC<PersonalInfoProps> = ({ personalData }) => {
     return (
-        <PersonalInfoContainer>
+        <PersonalInfo>
+            <Header>自己紹介</Header>
             <UserDataArea>
-                <Row iconType="business_center" isEvenRow={true}>
+                <RowContainer iconType="business_center" isEvenRow={true}>
                     <Text isBlock={true} isStrong={true}>
-                        シンプレクス株式会社
+                        {personalData.work.company}
                     </Text>
                     <Text isBlock={false} isStrong={false}>
-                        フロントエンドエンジニア 兼 デザイナー
+                        {personalData.work.job}
                     </Text>
-                </Row>
-                <Row iconType="business_center" isEvenRow={true}>
-                    <Text isBlock={true} isStrong={false}>
-                        以前の職業
-                    </Text>
+                </RowContainer>
+                {(() => {
+                    return personalData.privateActivities.map((work: any) => {
+                        return (
+                            <RowContainer key={work.index} iconType="business_center" isEvenRow={true}>
+                                <Heading>社外での活動</Heading>
+                                <Text isBlock={false} isStrong={true}>
+                                    {work.company}
+                                </Text>
+                                <Text isBlock={false} isStrong={false}>
+                                    {work.job}
+                                </Text>
+                            </RowContainer>
+                        );
+                    });
+                })()}
+                {(() => {
+                    return personalData.workHistory.map((work: any) => {
+                        return (
+                            <RowContainer key={work.index} iconType="business_center" isEvenRow={true}>
+                                <Heading>以前の勤務先</Heading>
+                                <Text isBlock={false} isStrong={true}>
+                                    {work.company}
+                                </Text>
+                                <Text isBlock={false} isStrong={false}>
+                                    {work.job}
+                                </Text>
+                            </RowContainer>
+                        );
+                    });
+                })()}
+                <RowContainer iconType="home" isEvenRow={false}>
                     <Text isBlock={false} isStrong={true}>
-                        株式会社ジーニー
-                    </Text>
-                    <Text isBlock={false} isStrong={false}>
-                        {' 営業・Web広告運用'}
-                    </Text>
-                </Row>
-                <Row iconType="home" isEvenRow={false}>
-                    <Text isBlock={false} isStrong={true}>
-                        東京都 渋谷区
+                        <span>{personalData.address.prefectures}</span>
+                        <span>{personalData.address.city}</span>
                     </Text>
                     <Text isBlock={false} isStrong={false}>
                         在住
                     </Text>
-                </Row>
-                <Row iconType="location_on" isEvenRow={false}>
+                </RowContainer>
+                <RowContainer iconType="location_on" isEvenRow={false}>
                     <Text isBlock={false} isStrong={true}>
-                        大阪府 大阪狭山市
+                        <span>{personalData.homeTown.prefectures}</span>
+                        <span>{personalData.homeTown.city}</span>
                     </Text>
                     <Text isBlock={false} isStrong={false}>
                         出身
                     </Text>
-                </Row>
-                <Row iconType="favorite" isEvenRow={false}>
+                </RowContainer>
+                <RowContainer iconType="favorite" isEvenRow={false}>
                     <Text isBlock={false} isStrong={false}>
-                        既婚
+                        {personalData.marriage ? '既婚' : '未婚'}
                     </Text>
-                </Row>
+                </RowContainer>
             </UserDataArea>
             <ButtonArea>
-                <Button onClick={() => alert('To be released.')}>
-                    基本データを見る
-                </Button>
+                <Button onClick={() => alert('To be released.')}>基本データを見る</Button>
             </ButtonArea>
-        </PersonalInfoContainer>
+        </PersonalInfo>
     );
 };
 
-export default PersonalInfo;
+export default PersonalInfoContainer;

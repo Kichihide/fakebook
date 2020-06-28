@@ -43,9 +43,4 @@ const setSquareImgSize = (diameter: string) => {
     `;
 };
 
-export {
-    BaseThumbnailIconWrapper,
-    setImgSize,
-    setCircleImgSize,
-    setSquareImgSize,
-};
+export { BaseThumbnailIconWrapper, setImgSize, setCircleImgSize, setSquareImgSize };

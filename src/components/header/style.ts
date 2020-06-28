@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 import device from '@styles/core/media';
 import { COLOR, FONT } from '@styles/define';
-import {
-    IconWrapper as BaseIconWrapper,
-    MaterialIcon as BaseMaterialIcon,
-} from '@styles/core/font-icon';
+import { IconWrapper as BaseIconWrapper, MaterialIcon as BaseMaterialIcon } from '@styles/core/font-icon';
 import { setImgSize } from '@components/image/style';
 
-const HeaderContainer = styled.header`
+const Header = styled.header`
     align-items: center;
     background-color: ${COLOR.HEADER_BACK};
     box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.26);
@@ -44,4 +41,4 @@ const MaterialIcon = styled(BaseMaterialIcon)`
     font-size: ${FONT.XXXLARGE};
 `;
 
-export { HeaderContainer, ImageWrapper, IconWrapper, MaterialIcon };
+export { Header, ImageWrapper, IconWrapper, MaterialIcon };
