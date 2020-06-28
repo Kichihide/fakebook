@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { graphql } from 'gatsby';
 import { TimelinePageQuery } from 'types/graphql-types';
-import { isJsonJsonSiteConfig, isJsonJsonProfile } from '@commons/typeUtils/jsonConnection/typeGuard';
+import { isJsonJsonSiteConfig, isJsonJsonLink, isJsonJsonProfile } from '@commons/typeUtils/jsonConnection/typeGuard';
 import { isImageSharpConnection } from '@commons/typeUtils/imageConnection/typeGuard';
 import { isMarkdownRemarkConnection } from '@commons/typeUtils/markdownRemarkConnection/typeGuard';
 import MyTimelineLayoutContainer from '@layouts/myTimeline';
@@ -16,6 +16,7 @@ const Components: FC<Props> = ({ data }) => {
     if (
         !siteConfigJson ||
         !isJsonJsonSiteConfig(siteConfigJson.siteConfig) ||
+        !isJsonJsonLink(siteConfigJson.link) ||
         !isJsonJsonProfile(siteConfigJson.profile) ||
         !isImageSharpConnection(allImageSharp) ||
         !isMarkdownRemarkConnection(allMarkdownRemark)
@@ -26,6 +27,7 @@ const Components: FC<Props> = ({ data }) => {
     return (
         <MyTimelineLayoutContainer
             jsonJsonSiteConfig={siteConfigJson.siteConfig}
+            jsonJsonLink={siteConfigJson.link}
             jsonJsonProfile={siteConfigJson.profile}
             imageSharpConnection={allImageSharp}
             markdownRemarkConnection={allMarkdownRemark}
@@ -40,6 +42,11 @@ export const pageQuery = graphql`
         siteConfigJson: jsonJson {
             siteConfig {
                 siteTitle
+            }
+            link {
+                github
+                messenger
+                twitter
             }
             profile {
                 name {

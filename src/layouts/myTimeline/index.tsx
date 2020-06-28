@@ -9,6 +9,7 @@ import useMyTimeline, { MyTimelineData } from '@layouts/myTimeline/useMyTimeline
 import { ContentsArea, GlobalStyle, MyPageContainer } from '@styles/globalStyle';
 import {
     JsonJsonSiteConfig,
+    JsonJsonLink,
     JsonJsonProfile,
     ImageSharpConnection,
     MarkdownRemarkConnection,
@@ -16,6 +17,7 @@ import {
 
 interface ContainerProps {
     jsonJsonSiteConfig: JsonJsonSiteConfig;
+    jsonJsonLink: JsonJsonLink;
     jsonJsonProfile: JsonJsonProfile;
     imageSharpConnection: ImageSharpConnection;
     markdownRemarkConnection: MarkdownRemarkConnection;
@@ -23,12 +25,14 @@ interface ContainerProps {
 
 const MyTimelineLayoutContainer: FC<ContainerProps> = ({
     jsonJsonSiteConfig,
+    jsonJsonLink,
     jsonJsonProfile,
     imageSharpConnection,
     markdownRemarkConnection,
 }) => {
     const [myTimelineProps] = useMyTimeline(
         jsonJsonSiteConfig,
+        jsonJsonLink,
         jsonJsonProfile,
         imageSharpConnection,
         markdownRemarkConnection
@@ -56,6 +60,7 @@ const MyTimelineLayout: FC<MyTimelineLayoutProps> = ({ myTimelineData }) => {
                 thumbnailImageFluid={myTimelineData.thumbnailImageFluid}
             />
             <NavigationContainer
+                jsonJsonLink={myTimelineData.jsonJsonLink}
                 messengerIconImageFluid={myTimelineData.messengerIconImageFluid}
                 twitterIconFluid={myTimelineData.twitterIconFluid}
                 gitHubIconFluid={myTimelineData.gitHubIconFluid}

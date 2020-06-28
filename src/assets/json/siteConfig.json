@@ -2,6 +2,11 @@
     "siteConfig": {
         "siteTitle": "fakebook"
     },
+    "link": {
+        "messenger": "https://m.me/yoshihide.unoki",
+        "twitter": "https://twitter.com/kichihide_y",
+        "github": "https://github.com/Kichihide/fakebook"
+    },
     "profile": {
         "name": {
             "firstName": "義秀",

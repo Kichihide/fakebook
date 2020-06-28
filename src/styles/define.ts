@@ -22,6 +22,8 @@ const COLOR = {
 
     BUTTON_PRIMARY_BACK: COLOR_PRIMARY,
     BUTTON_PRIMARY_TEXT: '#ffffff',
+    BUTTON_SECONDARY_BACK: '#e6f2ff',
+    BUTTON_SECONDARY_TEXT: '#2c84f5',
 };
 
 const FONT = {

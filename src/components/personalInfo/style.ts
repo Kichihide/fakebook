@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import device from '@styles/core/media';
 import { COLOR, FONT, FONT_WEIGHT, CONTENTS } from '@styles/define';
 import { MaterialIcon as BaseMaterialIcon, IconWrapper as BaseIconWrapper } from '@styles/core/font-icon';
+import { SecondaryButton as BaseSecondaryButton } from '@styles/components/button';
 
 const PersonalInfo = styled.div`
     background-color: ${COLOR.HERO_CONTENTS_BACK};
@@ -31,7 +32,7 @@ const UserDataArea = styled.div`
     margin: 0 0.8rem;
 
     ${device.pc`
-        padding-top: .24rem;
+        padding-top: .28rem;
     `};
     ${device.sp`
         border-top: .8px solid ${COLOR.SEPARATE_BORDER};
@@ -42,7 +43,7 @@ const UserDataArea = styled.div`
 const DataRow = styled.div<{ isEvenRow: boolean }>`
     align-items: ${({ isEvenRow }) => (isEvenRow ? 'flex-start' : 'center')};
     display: flex;
-    font-size: ${FONT.LARGE};
+    font-size: ${FONT.MEDIUM_LARGE};
     padding: 0.26rem;
 
     &:last-child {
@@ -112,18 +113,17 @@ const ButtonArea = styled.div`
     `};
 `;
 
-// Todo: 共通化 ※色、サイズも合わせて検討
-const Button = styled.div`
-    align-items: center;
-    background-color: #e6f2ff;
-    border-radius: 0.2rem;
-    color: #2c84f5;
-    display: flex;
-    font-size: ${FONT.MEDIUM};
-    font-weight: ${FONT_WEIGHT.BOLD};
-    justify-content: center;
-    padding: 0.5rem 0;
-    width: 100%;
+const SecondaryButton = styled(BaseSecondaryButton)`
+    ${device.sp`
+        font-size: ${FONT.MEDIUM};
+        font-weight: ${FONT_WEIGHT.BOLD};
+        height: 2.1rem;
+        width: 100%;
+        
+        div {
+            height: 100%;
+        }
+    `};
 `;
 
 export {
@@ -137,5 +137,5 @@ export {
     IconWrapper,
     MaterialIcon,
     ButtonArea,
-    Button,
+    SecondaryButton,
 };

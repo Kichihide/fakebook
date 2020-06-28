@@ -4,6 +4,11 @@ const query = `
             siteConfig {
                 siteTitle
             }
+            link {
+                github
+                messenger
+                twitter
+            }
             profile {
                 name {
                     firstName

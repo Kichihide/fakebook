@@ -24,6 +24,15 @@ const GlobalStyle = createGlobalStyle`
     ul {
         list-style-type: none;
     }
+    
+    a {
+        color: unset;
+        text-decoration: none;
+        
+        &:hover {
+            transition: all 0.5s ease;
+        }
+    }
 
     ${device.pc`
         body {

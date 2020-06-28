@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import usePersonal, { PersonalData } from '@components/personalInfo/usePersonal';
 import RowContainer from './sub/Row';
-import { PersonalInfo, Header, UserDataArea, Heading, Text, ButtonArea, Button } from './style';
+import { PersonalInfo, Header, UserDataArea, Heading, Text, ButtonArea, SecondaryButton } from './style';
 import { JsonJsonProfile } from 'types/graphql-types';
 
 interface ContainerProps {
@@ -91,7 +91,9 @@ const PersonalInfoComponent: FC<PersonalInfoProps> = ({ personalData }) => {
                 </RowContainer>
             </UserDataArea>
             <ButtonArea>
-                <Button onClick={() => alert('To be released.')}>基本データを見る</Button>
+                <SecondaryButton>
+                    <div onClick={() => alert('To be released.')}>基本データを見る</div>
+                </SecondaryButton>
             </ButtonArea>
         </PersonalInfo>
     );

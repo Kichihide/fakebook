@@ -68,36 +68,41 @@ const ContentsWrapper = styled.div`
 `;
 
 const ButtonArea = styled.div`
-    ${device.pc`
-        margin-right: 0.8rem;
-    `};
+    margin-right: 0.8rem;
+
     ${device.sp`
         width: 100%;
     `};
 `;
 
 const PrimaryButton = styled(BasePrimaryButton)`
-    justify-content: center;
+    height: 1.8rem;
+    font-weight: ${FONT_WEIGHT.BOLD};
+
+    a {
+        height: 100%;
+    }
 
     ${device.pc`
         font-size: ${FONT.MEDIUM_LARGE};
-        height: 1.8rem;
-        padding: 0 1rem;
+        
+        a {
+            padding: 0 1rem;
+        }
     `};
     ${device.sp`
         font-size: ${FONT.LARGE};
-        height: 1.8rem;
         width: 100%;
     `};
 `;
 
 const MessengerIcon = styled.div`
+    margin-right: 0.4rem;
+
     ${device.pc`
-        margin-right: .4rem;
         ${() => setSquareImgSize('.8rem')}
     `};
     ${device.sp`
-        margin-right: .4rem;
         ${() => setSquareImgSize('.85rem')}
     `};
 `;
@@ -105,19 +110,29 @@ const MessengerIcon = styled.div`
 const SocialIconArea = styled.div`
     align-items: center;
     display: flex;
-
-    ${device.sp`
-        display: none;
-    `};
 `;
 
-const TwitterIcon = styled.div`
+const BaseSocialIconStyle = styled.div`
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+
+    &:focus {
+        background-color: rgba(0, 0, 0, 0.12);
+        outline: none;
+        transition: all 0.3s ease;
+    }
+`;
+
+const TwitterIcon = styled(BaseSocialIconStyle)`
     padding: 0.2rem;
 
     ${() => setCircleImgSize('1.6rem')}
 `;
 
-const GitHubIcon = styled.div`
+const GitHubIcon = styled(BaseSocialIconStyle)`
     padding: 0.4rem;
 
     ${() => setCircleImgSize('1.2rem')}

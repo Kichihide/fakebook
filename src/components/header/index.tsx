@@ -19,9 +19,9 @@ const HeaderComponent: FC<HeaderProps> = ({ fakeBookLogoImageFluid }) => {
             <ImageWrapper>
                 <ImageContainer alt="fakebook-logo" fluid={fakeBookLogoImageFluid} />
             </ImageWrapper>
-            <IconWrapper onClick={() => alert('To be released.')}>
-                <MaterialIcon>search</MaterialIcon>
-            </IconWrapper>
+            {/*<IconWrapper onClick={() => alert('To be released.')}>*/}
+            {/*<MaterialIcon>search</MaterialIcon>*/}
+            {/*</IconWrapper>*/}
         </Header>
     );
 };

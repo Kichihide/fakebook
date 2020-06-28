@@ -1,10 +1,17 @@
-import { JsonJsonSiteConfig, JsonJsonProfile } from 'types/graphql-types';
+import { JsonJsonSiteConfig, JsonJsonLink, JsonJsonProfile } from 'types/graphql-types';
 
 function isJsonJsonSiteConfig(arg: any): arg is JsonJsonSiteConfig {
     if (arg == undefined) {
         return false;
     }
     return arg.siteTitle;
+}
+
+function isJsonJsonLink(arg: any): arg is JsonJsonLink {
+    if (arg == undefined) {
+        return false;
+    }
+    return arg.messenger && arg.twitter && arg.github;
 }
 
 function isJsonJsonProfile(arg: any): arg is JsonJsonProfile {
@@ -14,4 +21,4 @@ function isJsonJsonProfile(arg: any): arg is JsonJsonProfile {
     return arg.name && arg.romanNotation && arg.shortMessage;
 }
 
-export { isJsonJsonSiteConfig, isJsonJsonProfile };
+export { isJsonJsonSiteConfig, isJsonJsonLink, isJsonJsonProfile };

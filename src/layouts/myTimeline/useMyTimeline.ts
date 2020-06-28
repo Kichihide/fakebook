@@ -3,12 +3,14 @@ import {
     GatsbyImageSharpFluidFragment,
     ImageSharpConnection,
     JsonJsonProfile,
+    JsonJsonLink,
     JsonJsonSiteConfig,
     MarkdownRemarkConnection,
 } from 'types/graphql-types';
 
 export interface MyTimelineData {
     siteTitle: string;
+    jsonJsonLink: JsonJsonLink;
     jsonJsonProfile: JsonJsonProfile;
     fakeBookLogoImageFluid: GatsbyImageSharpFluidFragment;
     backgroundImageFluid: GatsbyImageSharpFluidFragment;
@@ -21,6 +23,7 @@ export interface MyTimelineData {
 
 const useMyTimeline = (
     jsonJsonSiteConfig: JsonJsonSiteConfig,
+    jsonJsonLink: JsonJsonLink,
     jsonJsonProfile: JsonJsonProfile,
     imageSharpConnection: ImageSharpConnection,
     markdownRemarkConnection: MarkdownRemarkConnection
@@ -47,6 +50,7 @@ const useMyTimeline = (
     return [
         {
             siteTitle: jsonJsonSiteConfig.siteTitle,
+            jsonJsonLink: jsonJsonLink,
             jsonJsonProfile: jsonJsonProfile,
             fakeBookLogoImageFluid: fakeBookLogoImageFluid,
             backgroundImageFluid: backgroundImageFluid,
