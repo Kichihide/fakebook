@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     html, body, code, kbd, samp, tt, pre, code,
     h1, h2, h3, h4, h5, h6 {
         color: ${COLOR.BASE_TEXT};
-        font-family: -apple-system, "hiragino kaku gothic pro", meiryo, "ms pgothic", sans-serif;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', "hiragino kaku gothic pro",meiryo,"ms pgothic",sans-serif;
     }
 
     html {
