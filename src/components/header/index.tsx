@@ -1,7 +1,12 @@
 import React, { FC, ComponentProps } from 'react';
 import ImageContainer from '@components/image';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
-import { Header, ImageWrapper, IconWrapper, MaterialIcon } from './style';
+import {
+    Header,
+    ImageWrapper,
+    // IconWrapper,
+    // MaterialIcon
+} from './style';
 
 type ContainerProps = ComponentProps<typeof HeaderComponent>;
 

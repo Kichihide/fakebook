@@ -1,51 +1,28 @@
-import React, { FC, ComponentProps } from 'react';
-import ImageContainer from '@components/image';
-import { GatsbyImageSharpFluidFragment, MarkdownRemarkFrontmatter } from 'types/graphql-types';
-import {
-    PostPreview,
-    Header,
-    ThumbnailArea,
-    ThumbnailIconWrapper,
-    MetaInfoArea,
-    Name,
-    DateWrapper,
-    Date,
-    MaterialIcon,
-    Contents,
-} from './style';
+import React, { FC } from 'react';
+import SimplePostsContainer from '@components/postPreview/simplePosts';
+import CarrierEventPostsContainer from '@components/postPreview/carrierEventPosts';
+import { GatsbyImageSharpFluidFragment, MarkdownRemarkFields } from 'types/graphql-types';
 
-type ContainerProps = ComponentProps<typeof PostPreviewComponent>;
-
-const PostPreviewContainer: FC<ContainerProps> = (props: ContainerProps) => {
-    return <PostPreviewComponent {...props} />;
-};
-
-interface PostPreviewProps {
-    fields: MarkdownRemarkFrontmatter;
+interface ContainerProps {
+    fields: MarkdownRemarkFields;
     html: any;
     thumbnailImageFluid: GatsbyImageSharpFluidFragment;
 }
 
-const PostPreviewComponent: FC<PostPreviewProps> = ({ fields, html, thumbnailImageFluid }) => {
-    return (
-        <PostPreview>
-            <Header>
-                <ThumbnailArea>
-                    <ThumbnailIconWrapper>
-                        <ImageContainer alt="thumbnail" fluid={thumbnailImageFluid} />
-                    </ThumbnailIconWrapper>
-                </ThumbnailArea>
-                <MetaInfoArea>
-                    <Name>{fields.contributor}</Name>
-                    <DateWrapper>
-                        <Date>{fields.date}</Date>
-                        <MaterialIcon>public</MaterialIcon>
-                    </DateWrapper>
-                </MetaInfoArea>
-            </Header>
-            <Contents dangerouslySetInnerHTML={{ __html: html }} />
-        </PostPreview>
-    );
+const PostPreviewContainer: FC<ContainerProps> = (props: ContainerProps) => {
+    const { category } = props.fields;
+
+    switch (category) {
+        case 'つぶやき':
+            return <SimplePostsContainer {...props} />;
+
+        case 'キャリアイベント':
+            return <CarrierEventPostsContainer {...props} />;
+
+        default:
+            // Todo: データ不備時の画面表示
+            return null;
+    }
 };
 
 export default PostPreviewContainer;

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import ImageContainer from '@components/image';
-import useProfile, { Profile } from '@components/hero/useProfile';
+import useProfileData, { Profile } from '@components/hero/useProfileData';
 import { GatsbyImageSharpFluidFragment, JsonJsonProfile } from 'types/graphql-types';
 import {
     HeroWrapper,
@@ -24,7 +24,7 @@ interface ContainerProps {
 }
 
 const HeroContainer: FC<ContainerProps> = ({ jsonJsonProfile, backgroundImageFluid, thumbnailImageFluid }) => {
-    const [profile] = useProfile(jsonJsonProfile);
+    const [profile] = useProfileData(jsonJsonProfile);
 
     if (!profile) {
         // Todo: データ不備時の画面表示

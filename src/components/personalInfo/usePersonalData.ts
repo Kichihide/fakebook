@@ -1,6 +1,6 @@
 import { JsonJsonProfile } from 'types/graphql-types';
 
-export type Work = {
+export interface Work {
     index: number;
     company: string;
     job: string;
@@ -14,9 +14,9 @@ export type Work = {
             month: number;
         };
     };
-};
+}
 
-export type PersonalData = {
+export interface PersonalData {
     work: Work;
     privateActivities: Array<Work>;
     workHistory: Array<Work>;
@@ -29,7 +29,7 @@ export type PersonalData = {
         city: string;
     };
     marriage: boolean;
-};
+}
 
 function isWork(arg: any): arg is Work {
     return (
@@ -51,7 +51,7 @@ function isWorkList(arg: any): arg is Array<Work> {
     return arg.every((work: any) => isWork(work));
 }
 
-const usePersonal = (jsonJsonProfile: JsonJsonProfile): [PersonalData] | [undefined] => {
+const usePersonalData = (jsonJsonProfile: JsonJsonProfile): [PersonalData] | [undefined] => {
     const { work, privateActivities, workHistory, address, homeTown, marriage } = jsonJsonProfile;
 
     if (
@@ -97,4 +97,4 @@ const usePersonal = (jsonJsonProfile: JsonJsonProfile): [PersonalData] | [undefi
     ];
 };
 
-export default usePersonal;
+export default usePersonalData;

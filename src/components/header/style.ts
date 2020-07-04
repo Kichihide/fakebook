@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import device from '@styles/core/media';
-import { COLOR, FONT } from '@styles/define';
-import { IconWrapper as BaseIconWrapper, MaterialIcon as BaseMaterialIcon } from '@styles/core/font-icon';
+import {
+    COLOR,
+    // FONT
+} from '@styles/define';
+// import { IconWrapper as BaseIconWrapper, MaterialIcon as BaseMaterialIcon } from '@styles/core/font-icon';
 import { setImgSize } from '@components/image/style';
 
 const Header = styled.header`
@@ -29,16 +32,21 @@ const ImageWrapper = styled.div`
     `};
 `;
 
-const IconWrapper = styled(BaseIconWrapper)`
-    border-radius: 50%;
-    margin-top: 0.05rem;
-    padding: 0.3rem;
-    transform: rotate(2deg);
-`;
+// const IconWrapper = styled(BaseIconWrapper)`
+//     border-radius: 50%;
+//     margin-top: 0.05rem;
+//     padding: 0.3rem;
+//     transform: rotate(2deg);
+// `;
+//
+// const MaterialIcon = styled(BaseMaterialIcon)`
+//     color: ${COLOR.HEADER_SEARCH};
+//     font-size: ${FONT.XXXLARGE};
+// `;
 
-const MaterialIcon = styled(BaseMaterialIcon)`
-    color: ${COLOR.ICON_HEADER_SEARCH};
-    font-size: ${FONT.XXXLARGE};
-`;
-
-export { Header, ImageWrapper, IconWrapper, MaterialIcon };
+export {
+    Header,
+    ImageWrapper,
+    // IconWrapper,
+    // MaterialIcon
+};

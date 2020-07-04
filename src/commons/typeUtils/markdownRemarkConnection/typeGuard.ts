@@ -13,8 +13,8 @@ function isMarkdownRemarkConnection(arg: any): arg is MarkdownRemarkConnection {
     }
 
     return arg.edges.every((edge: MarkdownRemarkEdge) => {
-        const { frontmatter, html } = edge.node;
-        return frontmatter && html;
+        const { fields, html } = edge.node;
+        return fields && html;
     });
 }
 

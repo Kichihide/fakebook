@@ -118,11 +118,17 @@ export const pageQuery = graphql`
         allMarkdownRemark {
             edges {
                 node {
-                    frontmatter {
+                    fields {
                         id
                         date
                         contributor
-                        tags
+                        job
+                        place
+                        category
+                        tags {
+                            key
+                            value
+                        }
                     }
                     html
                 }
