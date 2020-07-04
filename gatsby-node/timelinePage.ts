@@ -79,11 +79,17 @@ const query = `
         allMarkdownRemark {
             edges {
                 node {
-                    frontmatter {
+                    fields {
                         id
                         date
                         contributor
-                        tags
+                        job
+                        place
+                        category
+                        tags {
+                            key
+                            value
+                        }
                     }
                     html
                 }

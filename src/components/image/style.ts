@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { COLOR } from '@styles/define';
 
 const BaseThumbnailIconWrapper = styled.div`
-    border: 4px solid ${COLOR.ICON_THUMBNAIL_BORDER};
+    border: 4px solid ${COLOR.THUMBNAIL_BORDER};
 `;
 
 const setImgSize = (imgHeight: string, imgWidth: string) => {

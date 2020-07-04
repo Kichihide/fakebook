@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import device from '@styles/core/media';
-import { COLOR, FONT, FONT_WEIGHT, CONTENTS } from '@styles/define';
-import { MaterialIcon as BaseMaterialIcon } from '@styles/core/font-icon';
-import { setCircleImgSize, BaseThumbnailIconWrapper } from '@components/image/style';
+import { COLOR, CONTENTS, FONT, FONT_WEIGHT } from '@styles/define';
 
-const PostPreview = styled.article`
+const BasePostPreview = styled.article`
     background-color: ${COLOR.POST_PREVIEW_BACK};
     font-size: ${FONT.MEDIUM};
+    padding-bottom: 1rem;
 
     ${device.pc`
         border-radius: ${CONTENTS.BORDER_RADIUS};
@@ -18,57 +17,33 @@ const PostPreview = styled.article`
     `};
 `;
 
-const Header = styled.header`
-    align-items: center;
-    display: flex;
-    height: 2.5rem;
+const BaseHeaderArea = styled.div`
     margin-bottom: 0.4rem;
-    padding: 0.2rem 0.3rem 0;
+    padding-top: 0.3rem;
+
+    ${device.pc`
+        padding-right: .5rem;
+        padding-left: .5rem;
+   `};
+    ${device.sp`
+        padding-right: .3rem;
+        padding-left: .3rem;
+    `};
 `;
 
-const ThumbnailArea = styled.div`
-    margin-right: 0.2rem;
+const BaseContentsArea = styled.div`
+    ${device.pc`
+        padding-right: .8rem;
+        padding-left: .8rem;
+   
+   `};
+    ${device.sp`
+        padding-right: .6rem;
+        padding-left: .6rem;
+   `};
 `;
 
-const ThumbnailIconWrapper = styled(BaseThumbnailIconWrapper)`
-    ${() => setCircleImgSize('1.8rem')}
-`;
-
-const MetaInfoArea = styled.div`
-    align-items: flex-start;
-    display: flex;
-    flex-flow: column;
-    height: 1.8rem;
-    justify-content: center;
-`;
-
-const Name = styled.h3`
-    font-size: ${FONT.MEDIUM};
-    font-wight: ${FONT_WEIGHT.BOLD};
-    margin: 0 0 0.05rem;
-`;
-
-const DateWrapper = styled.span`
-    align-items: center;
-    color: ${COLOR.ICON_DATE};
-    display: flex;
-    font-size: ${FONT.BASE};
-`;
-
-const Date = styled.span`
-    &::after {
-        content: '・';
-    }
-`;
-
-const MaterialIcon = styled(BaseMaterialIcon)`
-    color: ${COLOR.ICON_DATE};
-    font-size: ${FONT.MEDIUM};
-`;
-
-const Contents = styled.div`
-    padding: 0 0.6rem 1rem;
-
+const BaseContents = styled.div`
     div,
     p {
         text-align: start;
@@ -77,22 +52,26 @@ const Contents = styled.div`
 
     p {
         margin: 0;
+
+        &:not(:last-child) {
+            margin-bottom: 0.6rem;
+        }
     }
 
     ul {
+        list-style-type: disc;
         padding-inline-start: 1rem;
+    }
+
+    .text {
+        &.bold {
+            font-weight: ${FONT_WEIGHT.BOLD};
+        }
+
+        &.underline {
+            text-decoration: underline;
+        }
     }
 `;
 
-export {
-    PostPreview,
-    Header,
-    ThumbnailArea,
-    ThumbnailIconWrapper,
-    MetaInfoArea,
-    Name,
-    DateWrapper,
-    Date,
-    MaterialIcon,
-    Contents,
-};
+export { BaseHeaderArea, BaseContentsArea, BasePostPreview, BaseContents };

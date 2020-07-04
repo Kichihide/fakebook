@@ -1,15 +1,16 @@
 import React, { FC } from 'react';
-import usePersonal, { PersonalData } from '@components/personalInfo/usePersonal';
+import usePersonalData, { PersonalData } from '@components/personalInfo/usePersonalData';
 import RowContainer from './sub/Row';
-import { PersonalInfo, Header, UserDataArea, Heading, Text, ButtonArea, SecondaryButton } from './style';
 import { JsonJsonProfile } from 'types/graphql-types';
+
+import { PersonalInfo, Header, UserDataArea, Heading, Text, ButtonArea, SecondaryButton } from './style';
 
 interface ContainerProps {
     jsonJsonProfile: JsonJsonProfile;
 }
 
 const PersonalInfoContainer: FC<ContainerProps> = ({ jsonJsonProfile }) => {
-    const [personalData] = usePersonal(jsonJsonProfile);
+    const [personalData] = usePersonalData(jsonJsonProfile);
 
     if (!personalData) {
         // Todo: データ不備時の画面表示

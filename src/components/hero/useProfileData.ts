@@ -12,7 +12,7 @@ export interface Profile {
     shortMessage: string;
 }
 
-const useProfile = (jsonJsonProfile: JsonJsonProfile): [Profile] | [undefined] => {
+const useProfileData = (jsonJsonProfile: JsonJsonProfile): [Profile] | [undefined] => {
     const { name, romanNotation, shortMessage } = jsonJsonProfile;
 
     if (
@@ -42,4 +42,4 @@ const useProfile = (jsonJsonProfile: JsonJsonProfile): [Profile] | [undefined] =
     ];
 };
 
-export default useProfile;
+export default useProfileData;

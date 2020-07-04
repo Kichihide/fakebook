@@ -84,7 +84,7 @@ const IconWrapper = styled(BaseIconWrapper)`
 `;
 
 const MaterialIcon = styled(BaseMaterialIcon)<{ iconType: string }>`
-    color: ${COLOR.ICON_USER_DATA_ROW};
+    color: ${COLOR.PERSONAL_INFO_ICON};
     font-size: ${FONT.XXLARGE};
 
     ${({ iconType }) =>

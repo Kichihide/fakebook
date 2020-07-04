@@ -27,8 +27,8 @@ const TimelineComponent: FC<TimelineProps> = ({ postList, thumbnailImageFluid })
                 return postList.map((edge: any) => {
                     return (
                         <PostPreviewContainer
-                            key={edge.node.frontmatter.id}
-                            fields={edge.node.frontmatter}
+                            key={edge.node.fields.id}
+                            fields={edge.node.fields}
                             html={edge.node.html}
                             thumbnailImageFluid={thumbnailImageFluid}
                         />
