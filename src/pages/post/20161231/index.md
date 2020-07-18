@@ -4,10 +4,9 @@ contributor: '鵜木 義秀'
 category: 'キャリアイベント'
 job: 'MAツールの営業'
 place: '西新宿'
+title: 'ジーニー（Geniee）を退職'
 tags:
   - 'ジーニー'
   - '転職'
 
 ---
-
-<h2>ジーニー（Geniee）を退職</h2>

@@ -125,6 +125,7 @@ export const pageQuery = graphql`
                         job
                         place
                         category
+                        title
                         tags {
                             key
                             value

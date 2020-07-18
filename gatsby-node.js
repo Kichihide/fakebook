@@ -9,6 +9,16 @@ require('ts-node').register({
     },
 });
 
+function formatId(id) {
+    return id.replace(/\//g, '').replace(/_/g, '');
+}
+
+function formatTagList(tagList) {
+    return tagList.map((tag, index) => {
+        return { key: index, value: tag };
+    });
+}
+
 /**
  * Gatsby API
  */
@@ -24,18 +34,12 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
     if (node.internal.type === 'MarkdownRemark') {
         const id = createFilePath({ node, getNode, basePath: 'pages' });
-        const formattedId = id.replace(/\//g, '').replace(/_/g, '');
-        const tags = (tagList) => {
-            return tagList.map((tag, index) => {
-                return { key: index, value: tag };
-            });
-        };
+        createNodeField({ node, name: 'id', value: formatId(id) });
 
-        createNodeField({ node, name: 'id', value: formattedId });
         _.forEach(node.frontmatter, (value, key) => {
             switch (key) {
                 case 'tags':
-                    createNodeField({ node, name: key, value: tags(value) });
+                    createNodeField({ node, name: key, value: formatTagList(value) });
                     break;
 
                 default:

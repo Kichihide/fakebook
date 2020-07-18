@@ -4,6 +4,7 @@ contributor: '鵜木 義秀'
 category: 'キャリアイベント'
 job: 'スプリントメンバー'
 place: '虎ノ門'
+title: '<span>Goodpatch主導の</span><span>デザインスプリントに参加</span>'
 tags:
   - 'シンプレクス'
   - 'デザインス'
@@ -12,8 +13,6 @@ tags:
   - 'Goodpatch'
 
 ---
-
-<h2>Goodpatch完全主導の<br/>デザインスプリントに参加</h2>
 
 <p>
     <span>（新規導入案件とは別の案件）</span>
