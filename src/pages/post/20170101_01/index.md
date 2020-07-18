@@ -4,6 +4,7 @@ contributor: '鵜木 義秀'
 category: 'キャリアイベント'
 job: 'エンジニア見習い'
 place: '虎ノ門'
+title: 'シンプレクス（Simplex）に入社'
 tags:
   - 'シンプレクス'
   - '転職'
@@ -11,8 +12,6 @@ tags:
   - 'エンジニア人生の始まり'
 
 ---
-
-<h2>シンプレクス（Simplex）に入社</h2>
 
 <p>
     <span>研修をスタートしました</span>

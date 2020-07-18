@@ -1,10 +1,10 @@
-import React, { FC, ComponentProps } from 'react';
+import React, { FC } from 'react';
 import PostHeaderContainer from '@components/postPreview/commons/postHeader';
-import TagListContainer from '@components/postPreview/commons/TagList';
+import TagListContainer from '@components/postPreview/commons/tagList';
 import { GatsbyImageSharpFluidFragment, MarkdownRemarkFields } from 'types/graphql-types';
 import { PostPreview, HeaderArea, ContentsArea, PostTagList, Contents } from './style';
 
-type ContainerProps = ComponentProps<typeof SimplePostsComponent>;
+type ContainerProps = SimplePostsProps;
 
 const SimplePostsContainer: FC<ContainerProps> = (props: ContainerProps) => {
     return <SimplePostsComponent {...props} />;

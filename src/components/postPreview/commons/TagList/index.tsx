@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import useTagsFields, { TagsFields } from '@components/postPreview/commons/TagList/useTagsFields';
+import React, { FC, Fragment } from 'react';
+import useTagsFields, { TagsFields } from '@components/postPreview/commons/tagList/useTagsFields';
 import { MarkdownRemarkFields } from 'types/graphql-types';
 import { Tag } from './style';
 
@@ -17,14 +17,20 @@ const TagListContainer: FC<ContainerProps> = ({ fields }) => {
     return <TagListComponent tagsFields={tagFields} />;
 };
 
-interface PostHeaderProps {
+interface TagListProps {
     tagsFields: TagsFields;
 }
 
-const TagListComponent: FC<PostHeaderProps> = ({ tagsFields }) => {
-    return tagsFields.tags.map((tag: { key: number; value: string }) => {
-        return <Tag key={tag.key}>{tag.value}</Tag>;
-    });
+const TagListComponent: FC<TagListProps> = ({ tagsFields }) => {
+    return (
+        <Fragment>
+            {(() => {
+                return tagsFields.tags.map((tag: { key: number; value: string }) => {
+                    return <Tag key={tag.key}>{tag.value}</Tag>;
+                });
+            })()}
+        </Fragment>
+    );
 };
 
 export default TagListContainer;

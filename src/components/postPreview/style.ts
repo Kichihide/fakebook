@@ -44,10 +44,16 @@ const BaseContentsArea = styled.div`
 `;
 
 const BaseContents = styled.div`
+    font-size: 0;
+
+    p,
+    span {
+        font-size: ${FONT.LARGE};
+    }
+
     div,
     p {
         text-align: start;
-        white-space: pre-wrap;
     }
 
     p {
@@ -74,4 +80,4 @@ const BaseContents = styled.div`
     }
 `;
 
-export { BaseHeaderArea, BaseContentsArea, BasePostPreview, BaseContents };
+export { BaseHeaderArea, BasePostPreview, BaseContentsArea, BaseContents };

@@ -40,21 +40,6 @@ const UserDataArea = styled.div`
     `};
 `;
 
-const DataRow = styled.div<{ isEvenRow: boolean }>`
-    align-items: ${({ isEvenRow }) => (isEvenRow ? 'flex-start' : 'center')};
-    display: flex;
-    font-size: ${FONT.MEDIUM_LARGE};
-    padding: 0.26rem;
-
-    &:last-child {
-        padding-bottom: 0.8rem;
-    }
-`;
-
-const TextWrapper = styled.div`
-    line-height: 1.34;
-`;
-
 const Heading = styled.div`
     display: block;
     font-size: 0.95em;
@@ -126,16 +111,4 @@ const SecondaryButton = styled(BaseSecondaryButton)`
     `};
 `;
 
-export {
-    PersonalInfo,
-    Header,
-    UserDataArea,
-    DataRow,
-    TextWrapper,
-    Heading,
-    Text,
-    IconWrapper,
-    MaterialIcon,
-    ButtonArea,
-    SecondaryButton,
-};
+export { PersonalInfo, Header, UserDataArea, Heading, Text, IconWrapper, MaterialIcon, ButtonArea, SecondaryButton };

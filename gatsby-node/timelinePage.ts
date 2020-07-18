@@ -86,6 +86,7 @@ const query = `
                         job
                         place
                         category
+                        title
                         tags {
                             key
                             value
