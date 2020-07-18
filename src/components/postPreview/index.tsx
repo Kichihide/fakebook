@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import SimplePostsContainer from '@components/postPreview/simplePosts';
-import CarrierEventPostsContainer from '@components/postPreview/carrierEventPosts';
+import SimplePostsContainer from '@components/postPreview/posts/simplePosts';
+import CarrierEventPostsContainer from '@components/postPreview/posts/carrierEventPosts';
 import { GatsbyImageSharpFluidFragment, MarkdownRemarkFields } from 'types/graphql-types';
 
 interface ContainerProps {

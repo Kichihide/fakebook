@@ -1,7 +1,7 @@
-import React, { FC, ComponentProps } from 'react';
-import { IconWrapper, MaterialIcon, DataRow, TextWrapper } from '../style';
+import React, { FC } from 'react';
+import { IconWrapper, MaterialIcon, DataRow, TextWrapper } from './style';
 
-type ContainerProps = ComponentProps<typeof RowComponent>;
+type ContainerProps = RowProps;
 
 const RowContainer: FC<ContainerProps> = (props: ContainerProps) => {
     return <RowComponent {...props} />;

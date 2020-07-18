@@ -14,7 +14,7 @@ function isMarkdownRemarkConnection(arg: any): arg is MarkdownRemarkConnection {
 
     return arg.edges.every((edge: MarkdownRemarkEdge) => {
         const { fields, html } = edge.node;
-        return fields && html;
+        return fields && (fields.title || html);
     });
 }
 

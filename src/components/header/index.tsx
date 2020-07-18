@@ -1,4 +1,4 @@
-import React, { FC, ComponentProps } from 'react';
+import React, { FC } from 'react';
 import ImageContainer from '@components/image';
 import { GatsbyImageSharpFluidFragment } from 'types/graphql-types';
 import {
@@ -8,7 +8,7 @@ import {
     // MaterialIcon
 } from './style';
 
-type ContainerProps = ComponentProps<typeof HeaderComponent>;
+type ContainerProps = HeaderProps;
 
 const HeaderContainer: FC<ContainerProps> = (props: ContainerProps) => {
     return <HeaderComponent {...props} />;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BaseTagList } from '@components/postPreview/commons/TagList/style';
+import { BaseTagList } from '@components/postPreview/commons/tagList/style';
 import { BaseHeaderArea, BaseContentsArea, BaseContents, BasePostPreview } from '@components/postPreview/style';
 
 const PostPreview = styled(BasePostPreview)``;

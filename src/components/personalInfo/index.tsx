@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import usePersonalData, { PersonalData } from '@components/personalInfo/usePersonalData';
-import RowContainer from './sub/Row';
+import RowContainer from '@components/personalInfo/commons/Row';
 import { JsonJsonProfile } from 'types/graphql-types';
 
 import { PersonalInfo, Header, UserDataArea, Heading, Text, ButtonArea, SecondaryButton } from './style';
