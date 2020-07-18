@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import PostHeaderContainer from '@components/postPreview/commons/postHeader';
-import TagListContainer from '@components/postPreview/commons/tagList';
+import TagsListContainer from '@components/postPreview/commons/tagsList';
 import { GatsbyImageSharpFluidFragment, MarkdownRemarkFields } from 'types/graphql-types';
 import { PostPreview, HeaderArea, ContentsArea, PostTagList, Contents } from './style';
 
@@ -25,7 +25,7 @@ const SimplePostsComponent: FC<SimplePostsProps> = ({ fields, html, thumbnailIma
             <ContentsArea>
                 <Contents dangerouslySetInnerHTML={{ __html: html }} />
                 <PostTagList>
-                    <TagListContainer fields={fields} />
+                    <TagsListContainer fields={fields} />
                 </PostTagList>
             </ContentsArea>
         </PostPreview>

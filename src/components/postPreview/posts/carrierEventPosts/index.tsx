@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useRef } from 'react';
 import PostHeaderContainer from '@components/postPreview/commons/postHeader';
-import TagListContainer from '@components/postPreview/commons/tagList';
+import TagsListContainer from '@components/postPreview/commons/tagsList';
 import useContentsState, { ContentsState } from '@components/postPreview/posts/carrierEventPosts/useContentsState';
 import ContentsContainer from '@components/postPreview/posts/carrierEventPosts/contents';
 import { GatsbyImageSharpFluidFragment, MarkdownRemarkFields } from 'types/graphql-types';
@@ -65,7 +65,7 @@ const CarrierEventPostsComponent: FC<CarrierEventPostsProps> = ({ contentsState,
                         <Job>{contentsState.job}</Job>
                     </MetaRow>
                     <PostTagList isOpen={contentsState.isOpen} isInitial={contentsState.isInitial}>
-                        <TagListContainer fields={fields} />
+                        <TagsListContainer fields={fields} />
                     </PostTagList>
                 </MetaData>
             </ContentsArea>

@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 import device from '@styles/core/media';
 import { COLOR } from '@styles/define';
-import { BaseTagList } from '@components/postPreview/commons/tagList/style';
+import { BaseTagList } from '@components/postPreview/commons/tagsList/style';
 import { BaseContentsArea, BaseHeaderArea, BasePostPreview } from '@components/postPreview/style';
 
 const MetaRowHeight = `1rem`;
